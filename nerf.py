@@ -37,7 +37,7 @@ class NeRF(torch.nn.Module):
                 self.backbone.append(torch.nn.Linear(ch, ch))
             else:
                 self.backbone.append(torch.nn.Linear(L_x * 6 + ch, ch))
-        self.alpha_linear = torch.nn.Linear(ch, 1)
+        self.sigma_linear = torch.nn.Linear(ch, 1)
         self.view_linear = torch.nn.Linear(L_d * 6 + ch, ch // 2)
         self.rgb_linear = torch.nn.Linear(ch // 2, 3)
                 
@@ -51,7 +51,7 @@ class NeRF(torch.nn.Module):
 
         Returns:
             torch.Tensor: rgb, [N_rays x N_samples, 3]
-            torch.Tensor: alpha, [N_rays x N_samples, 1]
+            torch.Tensor: sigma, [N_rays x N_samples, 1]
         """
         f_x = gamma_x = self.pe_x(rays_samples)   # [N_rays x N_samples, 60]
         f_d = gamma_d = self.pe_d(view_dirs)      # [N_rays x N_samples, 24]
@@ -63,11 +63,11 @@ class NeRF(torch.nn.Module):
             if i < self.L-1:
                 f_x = torch.relu(f_x)           # [N_rays x N_samples, 256]
 
-        alpha = self.alpha_linear(f_x)      # [N_rays x N_samples, 1]
-        alpha = torch.relu(alpha)           # [N_rays x N_samples, 1]
+        sigma = self.sigma_linear(f_x)      # [N_rays x N_samples, 1]
+        sigma = torch.relu(sigma)           # [N_rays x N_samples, 1]
 
         f = self.view_linear(torch.cat([f_x, gamma_d], dim=1))
         f = torch.relu(f)
         rgb = torch.rgb_linear(f)   # [N_rays x N_samples, 3]
         rgb = torch.sigmoid(rgb)    # [N_rays x N_samples, 3]
-        return rgb, alpha
+        return rgb, sigma

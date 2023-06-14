@@ -44,20 +44,20 @@ def uniform_sample_rays(rays_o, rays_d, near, far, N_samples):
        torch.Tensor: t values, [N_rays, N_samples]
     """
     N_rays = rays_o.shape[0]
-    eta = torch.rand(size=[N_rays, N_samples])                   # [N_rays, N_samples]
-    bins = torch.linspace(near, far, steps=N_samples+1)         # [N_samples+1]
-    lower_bins = bins[:-1].unsqueeze(0).expand(size=[N_rays, N_samples])      # [N_samples] -> [N_rays, N_samples]
-    upper_bins = bins[1:].unsqueeze(0).expand(size=[N_rays, N_samples])       # [N_samples] -> [N_rays, N_samples]
-    t_vals = lower_bins * (1 - eta) + upper_bins * eta          # [N_rays, N_samples]
-    rays_q = rays_o.unsqueeze(1) + t_vals.unsqueeze(-1) * rays_d.unsqueeze(1)   # [N_rays, N_samples, 3] = [N_rays, 1, 3] + [N_rays, N_samples, 1] x [N_rays, 1, 3]
+    eta = torch.rand(size=[N_rays, N_samples])                                  # [N_rays, N_samples]
+    bins = torch.linspace(near, far, steps=N_samples+1)                         # [N_samples+1]
+    lower_bins = bins[:-1].unsqueeze(0).expand(size=[N_rays, N_samples])        # [N_samples] -> [N_rays, N_samples]
+    upper_bins = bins[1:].unsqueeze(0).expand(size=[N_rays, N_samples])         # [N_samples] -> [N_rays, N_samples]
+    t_vals = lower_bins * (1 - eta) + upper_bins * eta                          # [N_rays, N_samples]
+    rays_q = rays_o.unsqueeze(1) + t_vals.unsqueeze(-1) * rays_d.unsqueeze(1)   # [N_rays, N_samples, 3] = [N_rays, 1, 3] + [N_rays, N_samples, 1] * [N_rays, 1, 3]
     return rays_q, t_vals
     
-def integrate(rgb, alpha, rays_d, t_vals):
+def integrate(rgb, sigma, rays_d, t_vals):
     """integrate rgb, alpha, rays_d and t_vals to rgb_map
 
     Args:
         rgb (torch.Tensor): [N_rays, N_samples, 3]
-        alpha (torch.Tensor): [N_rays, N_samples]
+        sigma (torch.Tensor): [N_rays, N_samples]
         rays_d (torch.Tensor): [N_rays, 3]
         t_vals (torch.Tensor): [N_rays, N_samples]
 
@@ -65,11 +65,50 @@ def integrate(rgb, alpha, rays_d, t_vals):
         torch.Tensor: rgb_map, [N_rays, 3]
         torch.Tensor: weights, [N_rays, N_samples]
     """
-    dists = t_vals[...,1:] - t_vals[...,:-1]        # [N_rays, N_samples-1]
-    dists = torch.cat([dists, torch.Tensor([1e10]).expand(dists[...,0].shape)], -1)  # [N_rays, N_samples]
-    dists = dists * torch.norm(rays_d[...,None,:], dim=-1)      # [N_rays, N_samples] = [N_rays, N_samples] * [N_rays, 1]
-    alpha = 1 - torch.exp(-alpha * dists)   # [N_rays, N_samples]
+    dists = t_vals[...,1:] - t_vals[...,:-1]                                                            # [N_rays, N_samples-1]
+    dists = torch.cat([dists, torch.Tensor([1e10]).expand(dists[...,:1].shape)], -1)                    # [N_rays, N_samples]
+    dists = dists * torch.norm(rays_d[...,None,:], dim=-1)                                              # [N_rays, N_samples] = [N_rays, N_samples] * [N_rays, 1]
+    alpha = 1 - torch.exp(-sigma * dists)                                                               # [N_rays, N_samples]
     T = torch.cumprod(torch.cat([torch.ones((alpha.shape[0], 1)), 1.-alpha + 1e-10], -1), -1)[:, :-1]   # [N_rays, N_samples]
-    weights = alpha * T  # [N_rays, N_samples]
-    rgb_map = torch.sum(rgb * weights[...,None], dim=1) # [N_rays, N_samples, 3] -> [N_rays, 3]
+    weights = alpha * T                                                                                 # [N_rays, N_samples]
+    rgb_map = torch.sum(rgb * weights[...,None], dim=1)                                                 # [N_rays, N_samples, 3] -> [N_rays, 3]
     return rgb_map, weights
+
+def importance_sample_rays(rays_o, rays_d, t_vals, weights, N_imp_samples):
+    """importance sample rays
+
+    Args:
+        rays_o (torch.Tensor): rays origin, [N_rays, 3]
+        rays_d (torch.Tensor): rays directory, [N_rays, 3]
+        t_vals (torch.Tensor): [N_rays, N_samples]
+        weights (torch.Tensor): [N_rays, N_samples]
+        N_imp_samples (int): number of importance samples
+
+    Returns:
+        torch.Tensor: rays query, [N_rays, N_imp_samples+N_samples, 3]
+        torch.Tensor: samples, [N_rays, N_imp_samples+N_samples]
+    """
+    weights = weights[1:-1] + 1e-5                                                  # [N_rays, N_samples-2]
+    bins = 0.5 * (t_vals[...,:-1] + t_vals[...,1:])                                 # [N_rays, N_samples-1]
+    # integrate pdf to cdf
+    pdf = weights / torch.sum(weights, dim=-1, keepdim=True)                        # [N_rays, N_samples-2]
+    cdf = torch.cumsum(pdf, dim=-1)                                                 # [N_rays, N_samples-2]
+    cdf = torch.cat([torch.zeros_like(cdf[...,:1], cdf)], dim=-1)                   # [N_rays, N_samples-1]
+    # invert transform sampling
+    u = torch.rand(list(cdf.shape[:-1]) + [N_imp_samples])                          # uniform sample cdf: [N_rays, N_imp_samples]
+    inds = torch.searchsorted(cdf, u, right=True)                                   # bin indices: [N_rays, N_imp_samples]
+    below = torch.max(torch.zeros_like(inds-1), inds-1)                             # [N_rays, N_imp_samples]
+    above = torch.min((cdf.shape[-1] - 1) * torch.ones_like(inds), inds)            # [N_rays, N_imp_samples]
+    inds_g = torch.stack([below, above], -1)                                        # [N_rays, N_imp_samples, 2]
+    matched_shape = [inds_g.shape[0], inds_g.shape[1], cdf.shape[-1]]               # matched_shape = [N_rays, N_imp_samples, N_samples-1]
+    cdf_g = torch.gather(cdf.unsqueeze(1).expand(matched_shape), 2, inds_g)         # [N_rays, N_imp_samples, 2] <- [N_rays, N_imp_samples, N_samples-1]
+    bins_g = torch.gather(bins.unsqueeze(1).expand(matched_shape), 2, inds_g)       # [N_rays, N_imp_samples, 2] <- [N_rays, N_imp_samples, N_samples-1]
+    denom = (cdf_g[...,1] - cdf_g[...,0])                                           # [N_rays, N_imp_samples]
+    denom = torch.where(denom < 1e-5, torch.ones_like(denom), denom)                # [N_rays, N_imp_samples]
+    t = (u - cdf_g[...,0]) / denom                                                  # [N_rays, N_imp_samples]
+    imp_samples = bins_g[...,0] + t * (bins_g[...,1]-bins_g[...,0])                 # [N_rays, N_imp_samples]
+    imp_samples.detach()                                                            # [N_rays, N_imp_samples]
+    # hierachical sampling
+    samples, _ = torch.sort(torch.sort([imp_samples, t_vals], dim=-1), dim=-1)      # [N_rays, N_imp_samples+N_samples]
+    rays_q = rays_o.unsqueeze(1) + samples.unsqueeze(-1) * rays_d.unsqueeze(1)      # [N_rays, N_imp_samples+N_samples, 3] = [N_rays, 1, 3] + [N_rays, N_imp_samples+N_samples, 1] * [N_rays, 1, 3]
+    return rays_q, samples
