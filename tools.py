@@ -49,7 +49,7 @@ def uniform_sample_rays(rays_o, rays_d, near, far, N_samples):
     lower_bins = bins[:-1].unsqueeze(0).expand(size=[N_rays, N_samples])        # [N_samples] -> [N_rays, N_samples]
     upper_bins = bins[1:].unsqueeze(0).expand(size=[N_rays, N_samples])         # [N_samples] -> [N_rays, N_samples]
     t_vals = lower_bins * (1 - eta) + upper_bins * eta                          # [N_rays, N_samples]
-    rays_q = rays_o.unsqueeze(1) + t_vals.unsqueeze(-1) * rays_d.unsqueeze(1)   # [N_rays, N_samples, 3] = [N_rays, 1, 3] + [N_rays, N_samples, 1] * [N_rays, 1, 3]
+    rays_q = rays_o.unsqueeze(1) + rays_d.unsqueeze(1) * t_vals.unsqueeze(-1)   # [N_rays, N_samples, 3] = [N_rays, 1, 3] +  [N_rays, 1, 3] * [N_rays, N_samples, 1]
     return rays_q, t_vals
     
 def integrate(rgb, sigma, rays_d, t_vals):
@@ -88,12 +88,12 @@ def importance_sample_rays(rays_o, rays_d, t_vals, weights, N_imp_samples):
         torch.Tensor: rays query, [N_rays, N_imp_samples+N_samples, 3]
         torch.Tensor: samples, [N_rays, N_imp_samples+N_samples]
     """
-    weights = weights[1:-1] + 1e-5                                                  # [N_rays, N_samples-2]
+    weights = weights[...,1:-1] + 1e-5                                              # [N_rays, N_samples-2]
     bins = 0.5 * (t_vals[...,:-1] + t_vals[...,1:])                                 # [N_rays, N_samples-1]
     # integrate pdf to cdf
     pdf = weights / torch.sum(weights, dim=-1, keepdim=True)                        # [N_rays, N_samples-2]
     cdf = torch.cumsum(pdf, dim=-1)                                                 # [N_rays, N_samples-2]
-    cdf = torch.cat([torch.zeros_like(cdf[...,:1], cdf)], dim=-1)                   # [N_rays, N_samples-1]
+    cdf = torch.cat([torch.zeros_like(cdf[...,:1]), cdf], dim=-1)                   # [N_rays, N_samples-1]
     # invert transform sampling
     u = torch.rand(list(cdf.shape[:-1]) + [N_imp_samples])                          # uniform sample cdf: [N_rays, N_imp_samples]
     inds = torch.searchsorted(cdf, u, right=True)                                   # bin indices: [N_rays, N_imp_samples]
@@ -109,6 +109,6 @@ def importance_sample_rays(rays_o, rays_d, t_vals, weights, N_imp_samples):
     imp_samples = bins_g[...,0] + t * (bins_g[...,1]-bins_g[...,0])                 # [N_rays, N_imp_samples]
     imp_samples.detach()                                                            # [N_rays, N_imp_samples]
     # hierachical sampling
-    samples, _ = torch.sort(torch.sort([imp_samples, t_vals], dim=-1), dim=-1)      # [N_rays, N_imp_samples+N_samples]
+    samples, _ = torch.sort(torch.cat([imp_samples, t_vals], dim=-1), dim=-1)       # [N_rays, N_imp_samples+N_samples]
     rays_q = rays_o.unsqueeze(1) + samples.unsqueeze(-1) * rays_d.unsqueeze(1)      # [N_rays, N_imp_samples+N_samples, 3] = [N_rays, 1, 3] + [N_rays, N_imp_samples+N_samples, 1] * [N_rays, 1, 3]
     return rays_q, samples

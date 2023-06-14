@@ -32,7 +32,7 @@ class NeRF(torch.nn.Module):
         self.L = L
         self.backbone = torch.nn.ModuleList()
         self.backbone.append(torch.nn.Linear(L_x * 6, ch))
-        for i in range(1, L-1):
+        for i in range(1, L):
             if i not in skips:
                 self.backbone.append(torch.nn.Linear(ch, ch))
             else:
@@ -68,6 +68,6 @@ class NeRF(torch.nn.Module):
 
         f = self.view_linear(torch.cat([f_x, gamma_d], dim=1))
         f = torch.relu(f)
-        rgb = torch.rgb_linear(f)   # [N_rays x N_samples, 3]
+        rgb = self.rgb_linear(f)   # [N_rays x N_samples, 3]
         rgb = torch.sigmoid(rgb)    # [N_rays x N_samples, 3]
         return rgb, sigma

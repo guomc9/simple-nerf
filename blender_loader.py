@@ -19,7 +19,7 @@ class blenderLoader(DataLoader):
             imgs.append(imageio.imread(fname))
             poses.append(np.array(frame['transform_matrix']))
 
-        imgs = (np.array(imgs) / 255.).astype(np.float32)[...:3]    # [N_images, H, W, 3], RGBA -> RGB
+        imgs = (np.array(imgs) / 255.).astype(np.float32)[..., :3]    # [N_images, H, W, 3], RGBA -> RGB
         poses = np.array(poses).astype(np.float32)                  # [N_images, 4, 4]
 
         H, W = imgs[0].shape[:2]
@@ -39,8 +39,8 @@ class blenderLoader(DataLoader):
         self.N_rays = self.N_images * self.N_rays_per_image
         self.N_batch = self.N_rays // self.batch_size
         self.rays_o, self.rays_d = get_rays_np(H, W, K, view_z_dir, poses[:,:-1,:]) # [N_images, H*W, 3], [N_images, H*W, 3]
-        self.rays_o.reshape(-1, 3)  # [N_images*H*W, 3] = [N_rays, 3]
-        self.rays_d.reshape(-1, 3)  # [N_images*H*W, 3] = [N_rays, 3]
+        self.rays_o = self.rays_o.reshape(-1, 3)  # [N_images*H*W, 3] = [N_rays, 3]
+        self.rays_d = self.rays_d.reshape(-1, 3)  # [N_images*H*W, 3] = [N_rays, 3]
         self.view_dirs = self.rays_d / np.linalg.norm(self.rays_d, axis=1, keepdims=True)   # [N_rays, 3]
         self.rays_rgb = imgs.reshape(-1, 3) # [N_images*H*W, 3] = [N_rays, 3]
 
