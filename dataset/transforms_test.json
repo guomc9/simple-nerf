@@ -3,7 +3,7 @@
     "far": 680.0,
     "frames": [
         {
-            "file_path": "../models/Scene-05/test/0.png",
+            "file_path": "./dataset/test/0.png",
             "transform_matrix": [
                 [
                     1.0,
@@ -32,7 +32,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/1.png",
+            "file_path": "./dataset/test/1.png",
             "transform_matrix": [
                 [
                     0.9997426271438599,
@@ -61,7 +61,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/2.png",
+            "file_path": "./dataset/test/2.png",
             "transform_matrix": [
                 [
                     0.9989705681800842,
@@ -90,7 +90,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/3.png",
+            "file_path": "./dataset/test/3.png",
             "transform_matrix": [
                 [
                     0.9976842999458313,
@@ -119,7 +119,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/4.png",
+            "file_path": "./dataset/test/4.png",
             "transform_matrix": [
                 [
                     0.9958844184875488,
@@ -148,7 +148,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/5.png",
+            "file_path": "./dataset/test/5.png",
             "transform_matrix": [
                 [
                     0.9935718774795532,
@@ -177,7 +177,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/6.png",
+            "file_path": "./dataset/test/6.png",
             "transform_matrix": [
                 [
                     0.99074786901474,
@@ -206,7 +206,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/7.png",
+            "file_path": "./dataset/test/7.png",
             "transform_matrix": [
                 [
                     0.9874138236045837,
@@ -235,7 +235,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/8.png",
+            "file_path": "./dataset/test/8.png",
             "transform_matrix": [
                 [
                     0.983571469783783,
@@ -264,7 +264,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/9.png",
+            "file_path": "./dataset/test/9.png",
             "transform_matrix": [
                 [
                     0.97922283411026,
@@ -293,7 +293,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/10.png",
+            "file_path": "./dataset/test/10.png",
             "transform_matrix": [
                 [
                     0.9743700623512268,
@@ -322,7 +322,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/11.png",
+            "file_path": "./dataset/test/11.png",
             "transform_matrix": [
                 [
                     0.9690157175064087,
@@ -351,7 +351,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/12.png",
+            "file_path": "./dataset/test/12.png",
             "transform_matrix": [
                 [
                     0.9631625413894653,
@@ -380,7 +380,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/13.png",
+            "file_path": "./dataset/test/13.png",
             "transform_matrix": [
                 [
                     0.9568135738372803,
@@ -409,7 +409,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/14.png",
+            "file_path": "./dataset/test/14.png",
             "transform_matrix": [
                 [
                     0.9499720335006714,
@@ -438,7 +438,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/15.png",
+            "file_path": "./dataset/test/15.png",
             "transform_matrix": [
                 [
                     0.9426414966583252,
@@ -467,7 +467,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/16.png",
+            "file_path": "./dataset/test/16.png",
             "transform_matrix": [
                 [
                     0.9348256587982178,
@@ -496,7 +496,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/17.png",
+            "file_path": "./dataset/test/17.png",
             "transform_matrix": [
                 [
                     0.9265286326408386,
@@ -525,7 +525,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/18.png",
+            "file_path": "./dataset/test/18.png",
             "transform_matrix": [
                 [
                     0.9177546501159668,
@@ -554,7 +554,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/19.png",
+            "file_path": "./dataset/test/19.png",
             "transform_matrix": [
                 [
                     0.9085081815719604,
@@ -583,7 +583,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/20.png",
+            "file_path": "./dataset/test/20.png",
             "transform_matrix": [
                 [
                     0.8987940549850464,
@@ -612,7 +612,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/21.png",
+            "file_path": "./dataset/test/21.png",
             "transform_matrix": [
                 [
                     0.8886172771453857,
@@ -641,7 +641,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/22.png",
+            "file_path": "./dataset/test/22.png",
             "transform_matrix": [
                 [
                     0.877983033657074,
@@ -670,7 +670,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/23.png",
+            "file_path": "./dataset/test/23.png",
             "transform_matrix": [
                 [
                     0.8668968081474304,
@@ -699,7 +699,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/24.png",
+            "file_path": "./dataset/test/24.png",
             "transform_matrix": [
                 [
                     0.8553643226623535,
@@ -728,7 +728,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/25.png",
+            "file_path": "./dataset/test/25.png",
             "transform_matrix": [
                 [
                     0.843391478061676,
@@ -757,7 +757,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/26.png",
+            "file_path": "./dataset/test/26.png",
             "transform_matrix": [
                 [
                     0.8309845924377441,
@@ -786,7 +786,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/27.png",
+            "file_path": "./dataset/test/27.png",
             "transform_matrix": [
                 [
                     0.8181498050689697,
@@ -815,7 +815,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/28.png",
+            "file_path": "./dataset/test/28.png",
             "transform_matrix": [
                 [
                     0.8048939108848572,
@@ -844,7 +844,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/29.png",
+            "file_path": "./dataset/test/29.png",
             "transform_matrix": [
                 [
                     0.7912236452102661,
@@ -873,7 +873,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/30.png",
+            "file_path": "./dataset/test/30.png",
             "transform_matrix": [
                 [
                     0.77714604139328,
@@ -902,7 +902,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/31.png",
+            "file_path": "./dataset/test/31.png",
             "transform_matrix": [
                 [
                     0.7626684904098511,
@@ -931,7 +931,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/32.png",
+            "file_path": "./dataset/test/32.png",
             "transform_matrix": [
                 [
                     0.7477982044219971,
@@ -960,7 +960,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/33.png",
+            "file_path": "./dataset/test/33.png",
             "transform_matrix": [
                 [
                     0.7325430512428284,
@@ -989,7 +989,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/34.png",
+            "file_path": "./dataset/test/34.png",
             "transform_matrix": [
                 [
                     0.7169107794761658,
@@ -1018,7 +1018,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/35.png",
+            "file_path": "./dataset/test/35.png",
             "transform_matrix": [
                 [
                     0.700909435749054,
@@ -1047,7 +1047,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/36.png",
+            "file_path": "./dataset/test/36.png",
             "transform_matrix": [
                 [
                     0.6845473051071167,
@@ -1076,7 +1076,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/37.png",
+            "file_path": "./dataset/test/37.png",
             "transform_matrix": [
                 [
                     0.6678327322006226,
@@ -1105,7 +1105,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/38.png",
+            "file_path": "./dataset/test/38.png",
             "transform_matrix": [
                 [
                     0.6507744193077087,
@@ -1134,7 +1134,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/39.png",
+            "file_path": "./dataset/test/39.png",
             "transform_matrix": [
                 [
                     0.6333810687065125,
@@ -1163,7 +1163,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/40.png",
+            "file_path": "./dataset/test/40.png",
             "transform_matrix": [
                 [
                     0.6156617403030396,
@@ -1192,7 +1192,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/41.png",
+            "file_path": "./dataset/test/41.png",
             "transform_matrix": [
                 [
                     0.5976253747940063,
@@ -1221,7 +1221,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/42.png",
+            "file_path": "./dataset/test/42.png",
             "transform_matrix": [
                 [
                     0.5792814493179321,
@@ -1250,7 +1250,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/43.png",
+            "file_path": "./dataset/test/43.png",
             "transform_matrix": [
                 [
                     0.5606393218040466,
@@ -1279,7 +1279,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/44.png",
+            "file_path": "./dataset/test/44.png",
             "transform_matrix": [
                 [
                     0.5417085289955139,
@@ -1308,7 +1308,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/45.png",
+            "file_path": "./dataset/test/45.png",
             "transform_matrix": [
                 [
                     0.5224989056587219,
@@ -1337,7 +1337,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/46.png",
+            "file_path": "./dataset/test/46.png",
             "transform_matrix": [
                 [
                     0.5030202269554138,
@@ -1366,7 +1366,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/47.png",
+            "file_path": "./dataset/test/47.png",
             "transform_matrix": [
                 [
                     0.48328274488449097,
@@ -1395,7 +1395,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/48.png",
+            "file_path": "./dataset/test/48.png",
             "transform_matrix": [
                 [
                     0.4632963538169861,
@@ -1424,7 +1424,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/49.png",
+            "file_path": "./dataset/test/49.png",
             "transform_matrix": [
                 [
                     0.44307154417037964,
@@ -1453,7 +1453,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/50.png",
+            "file_path": "./dataset/test/50.png",
             "transform_matrix": [
                 [
                     0.422618567943573,
@@ -1482,7 +1482,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/51.png",
+            "file_path": "./dataset/test/51.png",
             "transform_matrix": [
                 [
                     0.4019480347633362,
@@ -1511,7 +1511,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/52.png",
+            "file_path": "./dataset/test/52.png",
             "transform_matrix": [
                 [
                     0.38107070326805115,
@@ -1540,7 +1540,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/53.png",
+            "file_path": "./dataset/test/53.png",
             "transform_matrix": [
                 [
                     0.3599969446659088,
@@ -1569,7 +1569,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/54.png",
+            "file_path": "./dataset/test/54.png",
             "transform_matrix": [
                 [
                     0.33873802423477173,
@@ -1598,7 +1598,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/55.png",
+            "file_path": "./dataset/test/55.png",
             "transform_matrix": [
                 [
                     0.317304790019989,
@@ -1627,7 +1627,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/56.png",
+            "file_path": "./dataset/test/56.png",
             "transform_matrix": [
                 [
                     0.29570814967155457,
@@ -1656,7 +1656,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/57.png",
+            "file_path": "./dataset/test/57.png",
             "transform_matrix": [
                 [
                     0.27395913004875183,
@@ -1685,7 +1685,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/58.png",
+            "file_path": "./dataset/test/58.png",
             "transform_matrix": [
                 [
                     0.2520693242549896,
@@ -1714,7 +1714,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/59.png",
+            "file_path": "./dataset/test/59.png",
             "transform_matrix": [
                 [
                     0.23004963994026184,
@@ -1743,7 +1743,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/60.png",
+            "file_path": "./dataset/test/60.png",
             "transform_matrix": [
                 [
                     0.20791153609752655,
@@ -1772,7 +1772,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/61.png",
+            "file_path": "./dataset/test/61.png",
             "transform_matrix": [
                 [
                     0.18566639721393585,
@@ -1801,7 +1801,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/62.png",
+            "file_path": "./dataset/test/62.png",
             "transform_matrix": [
                 [
                     0.16332568228244781,
@@ -1830,7 +1830,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/63.png",
+            "file_path": "./dataset/test/63.png",
             "transform_matrix": [
                 [
                     0.1409008949995041,
@@ -1859,7 +1859,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/64.png",
+            "file_path": "./dataset/test/64.png",
             "transform_matrix": [
                 [
                     0.11840356886386871,
@@ -1888,7 +1888,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/65.png",
+            "file_path": "./dataset/test/65.png",
             "transform_matrix": [
                 [
                     0.0958452895283699,
@@ -1917,7 +1917,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/66.png",
+            "file_path": "./dataset/test/66.png",
             "transform_matrix": [
                 [
                     0.07323766499757767,
@@ -1946,7 +1946,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/67.png",
+            "file_path": "./dataset/test/67.png",
             "transform_matrix": [
                 [
                     0.050592467188835144,
@@ -1975,7 +1975,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/68.png",
+            "file_path": "./dataset/test/68.png",
             "transform_matrix": [
                 [
                     0.027921102941036224,
@@ -2004,7 +2004,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/69.png",
+            "file_path": "./dataset/test/69.png",
             "transform_matrix": [
                 [
                     0.005235366057604551,
@@ -2033,7 +2033,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/70.png",
+            "file_path": "./dataset/test/70.png",
             "transform_matrix": [
                 [
                     -0.017453186213970184,
@@ -2062,7 +2062,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/71.png",
+            "file_path": "./dataset/test/71.png",
             "transform_matrix": [
                 [
                     -0.040132634341716766,
@@ -2091,7 +2091,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/72.png",
+            "file_path": "./dataset/test/72.png",
             "transform_matrix": [
                 [
                     -0.06279130280017853,
@@ -2120,7 +2120,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/73.png",
+            "file_path": "./dataset/test/73.png",
             "transform_matrix": [
                 [
                     -0.08541776984930038,
@@ -2149,7 +2149,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/74.png",
+            "file_path": "./dataset/test/74.png",
             "transform_matrix": [
                 [
                     -0.1080002561211586,
@@ -2178,7 +2178,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/75.png",
+            "file_path": "./dataset/test/75.png",
             "transform_matrix": [
                 [
                     -0.13052715361118317,
@@ -2207,7 +2207,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/76.png",
+            "file_path": "./dataset/test/76.png",
             "transform_matrix": [
                 [
                     -0.15298673510551453,
@@ -2236,7 +2236,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/77.png",
+            "file_path": "./dataset/test/77.png",
             "transform_matrix": [
                 [
                     -0.17536792159080505,
@@ -2265,7 +2265,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/78.png",
+            "file_path": "./dataset/test/78.png",
             "transform_matrix": [
                 [
                     -0.1976584792137146,
@@ -2294,7 +2294,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/79.png",
+            "file_path": "./dataset/test/79.png",
             "transform_matrix": [
                 [
                     -0.2198473960161209,
@@ -2323,7 +2323,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/80.png",
+            "file_path": "./dataset/test/80.png",
             "transform_matrix": [
                 [
                     -0.24192313849925995,
@@ -2352,7 +2352,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/81.png",
+            "file_path": "./dataset/test/81.png",
             "transform_matrix": [
                 [
                     -0.26387423276901245,
@@ -2381,7 +2381,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/82.png",
+            "file_path": "./dataset/test/82.png",
             "transform_matrix": [
                 [
                     -0.2856895923614502,
@@ -2410,7 +2410,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/83.png",
+            "file_path": "./dataset/test/83.png",
             "transform_matrix": [
                 [
                     -0.30735790729522705,
@@ -2439,7 +2439,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/84.png",
+            "file_path": "./dataset/test/84.png",
             "transform_matrix": [
                 [
                     -0.3288680911064148,
@@ -2468,7 +2468,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/85.png",
+            "file_path": "./dataset/test/85.png",
             "transform_matrix": [
                 [
                     -0.3502088785171509,
@@ -2497,7 +2497,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/86.png",
+            "file_path": "./dataset/test/86.png",
             "transform_matrix": [
                 [
                     -0.3713693618774414,
@@ -2526,7 +2526,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/87.png",
+            "file_path": "./dataset/test/87.png",
             "transform_matrix": [
                 [
                     -0.3923385739326477,
@@ -2555,7 +2555,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/88.png",
+            "file_path": "./dataset/test/88.png",
             "transform_matrix": [
                 [
                     -0.41310593485832214,
@@ -2584,7 +2584,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/89.png",
+            "file_path": "./dataset/test/89.png",
             "transform_matrix": [
                 [
                     -0.433660626411438,
@@ -2613,7 +2613,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/90.png",
+            "file_path": "./dataset/test/90.png",
             "transform_matrix": [
                 [
                     -0.45399209856987,
@@ -2642,7 +2642,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/91.png",
+            "file_path": "./dataset/test/91.png",
             "transform_matrix": [
                 [
                     -0.4740898311138153,
@@ -2671,7 +2671,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/92.png",
+            "file_path": "./dataset/test/92.png",
             "transform_matrix": [
                 [
                     -0.4939435124397278,
@@ -2700,7 +2700,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/93.png",
+            "file_path": "./dataset/test/93.png",
             "transform_matrix": [
                 [
                     -0.5135429501533508,
@@ -2729,7 +2729,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/94.png",
+            "file_path": "./dataset/test/94.png",
             "transform_matrix": [
                 [
                     -0.5328779816627502,
@@ -2758,7 +2758,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/95.png",
+            "file_path": "./dataset/test/95.png",
             "transform_matrix": [
                 [
                     -0.5519387125968933,
@@ -2787,7 +2787,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/96.png",
+            "file_path": "./dataset/test/96.png",
             "transform_matrix": [
                 [
                     -0.5707153677940369,
@@ -2816,7 +2816,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/97.png",
+            "file_path": "./dataset/test/97.png",
             "transform_matrix": [
                 [
                     -0.5891981720924377,
@@ -2845,7 +2845,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/98.png",
+            "file_path": "./dataset/test/98.png",
             "transform_matrix": [
                 [
                     -0.6073774695396423,
@@ -2874,7 +2874,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/99.png",
+            "file_path": "./dataset/test/99.png",
             "transform_matrix": [
                 [
                     -0.6252443194389343,
@@ -2903,7 +2903,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/100.png",
+            "file_path": "./dataset/test/100.png",
             "transform_matrix": [
                 [
                     -0.6427892446517944,
@@ -2932,7 +2932,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/101.png",
+            "file_path": "./dataset/test/101.png",
             "transform_matrix": [
                 [
                     -0.6600033640861511,
@@ -2961,7 +2961,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/102.png",
+            "file_path": "./dataset/test/102.png",
             "transform_matrix": [
                 [
                     -0.6768776774406433,
@@ -2990,7 +2990,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/103.png",
+            "file_path": "./dataset/test/103.png",
             "transform_matrix": [
                 [
                     -0.6934035420417786,
@@ -3019,7 +3019,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/104.png",
+            "file_path": "./dataset/test/104.png",
             "transform_matrix": [
                 [
                     -0.709572434425354,
@@ -3048,7 +3048,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/105.png",
+            "file_path": "./dataset/test/105.png",
             "transform_matrix": [
                 [
                     -0.7253760695457458,
@@ -3077,7 +3077,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/106.png",
+            "file_path": "./dataset/test/106.png",
             "transform_matrix": [
                 [
                     -0.7408062815666199,
@@ -3106,7 +3106,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/107.png",
+            "file_path": "./dataset/test/107.png",
             "transform_matrix": [
                 [
                     -0.7558552026748657,
@@ -3135,7 +3135,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/108.png",
+            "file_path": "./dataset/test/108.png",
             "transform_matrix": [
                 [
                     -0.770514965057373,
@@ -3164,7 +3164,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/109.png",
+            "file_path": "./dataset/test/109.png",
             "transform_matrix": [
                 [
                     -0.7847780585289001,
@@ -3193,7 +3193,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/110.png",
+            "file_path": "./dataset/test/110.png",
             "transform_matrix": [
                 [
                     -0.7986370325088501,
@@ -3222,7 +3222,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/111.png",
+            "file_path": "./dataset/test/111.png",
             "transform_matrix": [
                 [
                     -0.8120852112770081,
@@ -3251,7 +3251,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/112.png",
+            "file_path": "./dataset/test/112.png",
             "transform_matrix": [
                 [
                     -0.8251151442527771,
@@ -3280,7 +3280,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/113.png",
+            "file_path": "./dataset/test/113.png",
             "transform_matrix": [
                 [
                     -0.8377203345298767,
@@ -3309,7 +3309,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/114.png",
+            "file_path": "./dataset/test/114.png",
             "transform_matrix": [
                 [
                     -0.8498942852020264,
@@ -3338,7 +3338,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/115.png",
+            "file_path": "./dataset/test/115.png",
             "transform_matrix": [
                 [
                     -0.8616307377815247,
@@ -3367,7 +3367,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/116.png",
+            "file_path": "./dataset/test/116.png",
             "transform_matrix": [
                 [
                     -0.8729234933853149,
@@ -3396,7 +3396,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/117.png",
+            "file_path": "./dataset/test/117.png",
             "transform_matrix": [
                 [
                     -0.8837670087814331,
@@ -3425,7 +3425,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/118.png",
+            "file_path": "./dataset/test/118.png",
             "transform_matrix": [
                 [
                     -0.8941556215286255,
@@ -3454,7 +3454,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/119.png",
+            "file_path": "./dataset/test/119.png",
             "transform_matrix": [
                 [
                     -0.9040839672088623,
@@ -3483,7 +3483,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/120.png",
+            "file_path": "./dataset/test/120.png",
             "transform_matrix": [
                 [
                     -0.9135468602180481,
@@ -3512,7 +3512,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/121.png",
+            "file_path": "./dataset/test/121.png",
             "transform_matrix": [
                 [
                     -0.9225393533706665,
@@ -3541,7 +3541,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/122.png",
+            "file_path": "./dataset/test/122.png",
             "transform_matrix": [
                 [
                     -0.9310570359230042,
@@ -3570,7 +3570,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/123.png",
+            "file_path": "./dataset/test/123.png",
             "transform_matrix": [
                 [
                     -0.9390953779220581,
@@ -3599,7 +3599,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/124.png",
+            "file_path": "./dataset/test/124.png",
             "transform_matrix": [
                 [
                     -0.9466503858566284,
@@ -3628,7 +3628,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/125.png",
+            "file_path": "./dataset/test/125.png",
             "transform_matrix": [
                 [
                     -0.9537180066108704,
@@ -3657,7 +3657,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/126.png",
+            "file_path": "./dataset/test/126.png",
             "transform_matrix": [
                 [
                     -0.9602946639060974,
@@ -3686,7 +3686,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/127.png",
+            "file_path": "./dataset/test/127.png",
             "transform_matrix": [
                 [
                     -0.9663770198822021,
@@ -3715,7 +3715,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/128.png",
+            "file_path": "./dataset/test/128.png",
             "transform_matrix": [
                 [
                     -0.9719618558883667,
@@ -3744,7 +3744,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/129.png",
+            "file_path": "./dataset/test/129.png",
             "transform_matrix": [
                 [
                     -0.9770463705062866,
@@ -3773,7 +3773,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/130.png",
+            "file_path": "./dataset/test/130.png",
             "transform_matrix": [
                 [
                     -0.9816279411315918,
@@ -3802,7 +3802,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/131.png",
+            "file_path": "./dataset/test/131.png",
             "transform_matrix": [
                 [
                     -0.9857041239738464,
@@ -3831,7 +3831,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/132.png",
+            "file_path": "./dataset/test/132.png",
             "transform_matrix": [
                 [
                     -0.9892728924751282,
@@ -3860,7 +3860,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/133.png",
+            "file_path": "./dataset/test/133.png",
             "transform_matrix": [
                 [
                     -0.9923324584960938,
@@ -3889,7 +3889,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/134.png",
+            "file_path": "./dataset/test/134.png",
             "transform_matrix": [
                 [
                     -0.9948810935020447,
@@ -3918,7 +3918,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/135.png",
+            "file_path": "./dataset/test/135.png",
             "transform_matrix": [
                 [
                     -0.9969176650047302,
@@ -3947,7 +3947,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/136.png",
+            "file_path": "./dataset/test/136.png",
             "transform_matrix": [
                 [
                     -0.9984409809112549,
@@ -3976,7 +3976,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/137.png",
+            "file_path": "./dataset/test/137.png",
             "transform_matrix": [
                 [
                     -0.9994503855705261,
@@ -4005,7 +4005,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/138.png",
+            "file_path": "./dataset/test/138.png",
             "transform_matrix": [
                 [
                     -0.9999452233314514,
@@ -4034,7 +4034,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/139.png",
+            "file_path": "./dataset/test/139.png",
             "transform_matrix": [
                 [
                     -0.9999253153800964,
@@ -4063,7 +4063,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/140.png",
+            "file_path": "./dataset/test/140.png",
             "transform_matrix": [
                 [
                     -0.9993906617164612,
@@ -4092,7 +4092,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/141.png",
+            "file_path": "./dataset/test/141.png",
             "transform_matrix": [
                 [
                     -0.9983415603637695,
@@ -4121,7 +4121,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/142.png",
+            "file_path": "./dataset/test/142.png",
             "transform_matrix": [
                 [
                     -0.9967785477638245,
@@ -4150,7 +4150,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/143.png",
+            "file_path": "./dataset/test/143.png",
             "transform_matrix": [
                 [
                     -0.9947023391723633,
@@ -4179,7 +4179,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/144.png",
+            "file_path": "./dataset/test/144.png",
             "transform_matrix": [
                 [
                     -0.9921141266822815,
@@ -4208,7 +4208,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/145.png",
+            "file_path": "./dataset/test/145.png",
             "transform_matrix": [
                 [
                     -0.9890152215957642,
@@ -4237,7 +4237,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/146.png",
+            "file_path": "./dataset/test/146.png",
             "transform_matrix": [
                 [
                     -0.9854070544242859,
@@ -4266,7 +4266,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/147.png",
+            "file_path": "./dataset/test/147.png",
             "transform_matrix": [
                 [
                     -0.9812917709350586,
@@ -4295,7 +4295,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/148.png",
+            "file_path": "./dataset/test/148.png",
             "transform_matrix": [
                 [
                     -0.9766712188720703,
@@ -4324,7 +4324,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/149.png",
+            "file_path": "./dataset/test/149.png",
             "transform_matrix": [
                 [
                     -0.9715480208396912,
@@ -4353,7 +4353,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/150.png",
+            "file_path": "./dataset/test/150.png",
             "transform_matrix": [
                 [
                     -0.9659245610237122,
@@ -4382,7 +4382,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/151.png",
+            "file_path": "./dataset/test/151.png",
             "transform_matrix": [
                 [
                     -0.9598038792610168,
@@ -4411,7 +4411,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/152.png",
+            "file_path": "./dataset/test/152.png",
             "transform_matrix": [
                 [
                     -0.9531891942024231,
@@ -4440,7 +4440,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/153.png",
+            "file_path": "./dataset/test/153.png",
             "transform_matrix": [
                 [
                     -0.946083664894104,
@@ -4469,7 +4469,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/154.png",
+            "file_path": "./dataset/test/154.png",
             "transform_matrix": [
                 [
                     -0.9384912848472595,
@@ -4498,7 +4498,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/155.png",
+            "file_path": "./dataset/test/155.png",
             "transform_matrix": [
                 [
                     -0.930415689945221,
@@ -4527,7 +4527,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/156.png",
+            "file_path": "./dataset/test/156.png",
             "transform_matrix": [
                 [
                     -0.9218611717224121,
@@ -4556,7 +4556,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/157.png",
+            "file_path": "./dataset/test/157.png",
             "transform_matrix": [
                 [
                     -0.9128320217132568,
@@ -4585,7 +4585,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/158.png",
+            "file_path": "./dataset/test/158.png",
             "transform_matrix": [
                 [
                     -0.9033328890800476,
@@ -4614,7 +4614,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/159.png",
+            "file_path": "./dataset/test/159.png",
             "transform_matrix": [
                 [
                     -0.8933689594268799,
@@ -4643,7 +4643,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/160.png",
+            "file_path": "./dataset/test/160.png",
             "transform_matrix": [
                 [
                     -0.8829449415206909,
@@ -4672,7 +4672,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/161.png",
+            "file_path": "./dataset/test/161.png",
             "transform_matrix": [
                 [
                     -0.8720665574073792,
@@ -4701,7 +4701,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/162.png",
+            "file_path": "./dataset/test/162.png",
             "transform_matrix": [
                 [
                     -0.8607392311096191,
@@ -4730,7 +4730,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/163.png",
+            "file_path": "./dataset/test/163.png",
             "transform_matrix": [
                 [
                     -0.8489688634872437,
@@ -4759,7 +4759,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/164.png",
+            "file_path": "./dataset/test/164.png",
             "transform_matrix": [
                 [
                     -0.8367611765861511,
@@ -4788,7 +4788,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/165.png",
+            "file_path": "./dataset/test/165.png",
             "transform_matrix": [
                 [
                     -0.8241230845451355,
@@ -4817,7 +4817,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/166.png",
+            "file_path": "./dataset/test/166.png",
             "transform_matrix": [
                 [
                     -0.8110604286193848,
@@ -4846,7 +4846,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/167.png",
+            "file_path": "./dataset/test/167.png",
             "transform_matrix": [
                 [
                     -0.7975804209709167,
@@ -4875,7 +4875,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/168.png",
+            "file_path": "./dataset/test/168.png",
             "transform_matrix": [
                 [
                     -0.7836899161338806,
@@ -4904,7 +4904,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/169.png",
+            "file_path": "./dataset/test/169.png",
             "transform_matrix": [
                 [
                     -0.7693957090377808,
@@ -4933,7 +4933,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/170.png",
+            "file_path": "./dataset/test/170.png",
             "transform_matrix": [
                 [
                     -0.7547057867050171,
@@ -4962,7 +4962,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/171.png",
+            "file_path": "./dataset/test/171.png",
             "transform_matrix": [
                 [
                     -0.7396270036697388,
@@ -4991,7 +4991,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/172.png",
+            "file_path": "./dataset/test/172.png",
             "transform_matrix": [
                 [
                     -0.7241677641868591,
@@ -5020,7 +5020,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/173.png",
+            "file_path": "./dataset/test/173.png",
             "transform_matrix": [
                 [
                     -0.7083355784416199,
@@ -5049,7 +5049,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/174.png",
+            "file_path": "./dataset/test/174.png",
             "transform_matrix": [
                 [
                     -0.6921386122703552,
@@ -5078,7 +5078,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/175.png",
+            "file_path": "./dataset/test/175.png",
             "transform_matrix": [
                 [
                     -0.6755856871604919,
@@ -5107,7 +5107,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/176.png",
+            "file_path": "./dataset/test/176.png",
             "transform_matrix": [
                 [
                     -0.6586846113204956,
@@ -5136,7 +5136,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/177.png",
+            "file_path": "./dataset/test/177.png",
             "transform_matrix": [
                 [
                     -0.6414448618888855,
@@ -5165,7 +5165,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/178.png",
+            "file_path": "./dataset/test/178.png",
             "transform_matrix": [
                 [
                     -0.6238746643066406,
@@ -5194,7 +5194,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/179.png",
+            "file_path": "./dataset/test/179.png",
             "transform_matrix": [
                 [
                     -0.605983316898346,
@@ -5223,7 +5223,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/180.png",
+            "file_path": "./dataset/test/180.png",
             "transform_matrix": [
                 [
                     -0.5877800583839417,
@@ -5252,7 +5252,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/181.png",
+            "file_path": "./dataset/test/181.png",
             "transform_matrix": [
                 [
                     -0.5692741870880127,
@@ -5281,7 +5281,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/182.png",
+            "file_path": "./dataset/test/182.png",
             "transform_matrix": [
                 [
                     -0.5504752397537231,
@@ -5310,7 +5310,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/183.png",
+            "file_path": "./dataset/test/183.png",
             "transform_matrix": [
                 [
                     -0.5313929915428162,
@@ -5339,7 +5339,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/184.png",
+            "file_path": "./dataset/test/184.png",
             "transform_matrix": [
                 [
                     -0.5120370984077454,
@@ -5368,7 +5368,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/185.png",
+            "file_path": "./dataset/test/185.png",
             "transform_matrix": [
                 [
                     -0.49241769313812256,
@@ -5397,7 +5397,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/186.png",
+            "file_path": "./dataset/test/186.png",
             "transform_matrix": [
                 [
                     -0.47254475951194763,
@@ -5426,7 +5426,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/187.png",
+            "file_path": "./dataset/test/187.png",
             "transform_matrix": [
                 [
                     -0.45242857933044434,
@@ -5455,7 +5455,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/188.png",
+            "file_path": "./dataset/test/188.png",
             "transform_matrix": [
                 [
                     -0.4320794939994812,
@@ -5484,7 +5484,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/189.png",
+            "file_path": "./dataset/test/189.png",
             "transform_matrix": [
                 [
                     -0.4115079939365387,
@@ -5513,7 +5513,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/190.png",
+            "file_path": "./dataset/test/190.png",
             "transform_matrix": [
                 [
                     -0.39072462916374207,
@@ -5542,7 +5542,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/191.png",
+            "file_path": "./dataset/test/191.png",
             "transform_matrix": [
                 [
                     -0.36974015831947327,
@@ -5571,7 +5571,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/192.png",
+            "file_path": "./dataset/test/192.png",
             "transform_matrix": [
                 [
                     -0.34856531023979187,
@@ -5600,7 +5600,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/193.png",
+            "file_path": "./dataset/test/193.png",
             "transform_matrix": [
                 [
                     -0.32721105217933655,
@@ -5629,7 +5629,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/194.png",
+            "file_path": "./dataset/test/194.png",
             "transform_matrix": [
                 [
                     -0.30568835139274597,
@@ -5658,7 +5658,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/195.png",
+            "file_path": "./dataset/test/195.png",
             "transform_matrix": [
                 [
                     -0.28400829434394836,
@@ -5687,7 +5687,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/196.png",
+            "file_path": "./dataset/test/196.png",
             "transform_matrix": [
                 [
                     -0.26218199729919434,
@@ -5716,7 +5716,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/197.png",
+            "file_path": "./dataset/test/197.png",
             "transform_matrix": [
                 [
                     -0.24022123217582703,
@@ -5745,7 +5745,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/198.png",
+            "file_path": "./dataset/test/198.png",
             "transform_matrix": [
                 [
                     -0.21813634037971497,
@@ -5774,7 +5774,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/199.png",
+            "file_path": "./dataset/test/199.png",
             "transform_matrix": [
                 [
                     -0.19593961536884308,
@@ -5803,7 +5803,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/200.png",
+            "file_path": "./dataset/test/200.png",
             "transform_matrix": [
                 [
                     -0.17364202439785004,
@@ -5832,7 +5832,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/201.png",
+            "file_path": "./dataset/test/201.png",
             "transform_matrix": [
                 [
                     -0.1512545794248581,
@@ -5861,7 +5861,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/202.png",
+            "file_path": "./dataset/test/202.png",
             "transform_matrix": [
                 [
                     -0.1287892758846283,
@@ -5890,7 +5890,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/203.png",
+            "file_path": "./dataset/test/203.png",
             "transform_matrix": [
                 [
                     -0.10625814646482468,
@@ -5919,7 +5919,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/204.png",
+            "file_path": "./dataset/test/204.png",
             "transform_matrix": [
                 [
                     -0.08367232233285904,
@@ -5948,7 +5948,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/205.png",
+            "file_path": "./dataset/test/205.png",
             "transform_matrix": [
                 [
                     -0.061042945832014084,
@@ -5977,7 +5977,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/206.png",
+            "file_path": "./dataset/test/206.png",
             "transform_matrix": [
                 [
                     -0.038382623344659805,
@@ -6006,7 +6006,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/207.png",
+            "file_path": "./dataset/test/207.png",
             "transform_matrix": [
                 [
                     -0.01570206694304943,
@@ -6035,7 +6035,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/208.png",
+            "file_path": "./dataset/test/208.png",
             "transform_matrix": [
                 [
                     0.006986096501350403,
@@ -6064,7 +6064,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/209.png",
+            "file_path": "./dataset/test/209.png",
             "transform_matrix": [
                 [
                     0.02967066317796707,
@@ -6093,7 +6093,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/210.png",
+            "file_path": "./dataset/test/210.png",
             "transform_matrix": [
                 [
                     0.05234043300151825,
@@ -6122,7 +6122,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/211.png",
+            "file_path": "./dataset/test/211.png",
             "transform_matrix": [
                 [
                     0.07498278468847275,
@@ -6151,7 +6151,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/212.png",
+            "file_path": "./dataset/test/212.png",
             "transform_matrix": [
                 [
                     0.09758701175451279,
@@ -6180,7 +6180,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/213.png",
+            "file_path": "./dataset/test/213.png",
             "transform_matrix": [
                 [
                     0.12014053016901016,
@@ -6209,7 +6209,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/214.png",
+            "file_path": "./dataset/test/214.png",
             "transform_matrix": [
                 [
                     0.14263220131397247,
@@ -6238,7 +6238,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/215.png",
+            "file_path": "./dataset/test/215.png",
             "transform_matrix": [
                 [
                     0.1650509238243103,
@@ -6267,7 +6267,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/216.png",
+            "file_path": "./dataset/test/216.png",
             "transform_matrix": [
                 [
                     0.1873842179775238,
@@ -6296,7 +6296,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/217.png",
+            "file_path": "./dataset/test/217.png",
             "transform_matrix": [
                 [
                     0.20962150394916534,
@@ -6325,7 +6325,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/218.png",
+            "file_path": "./dataset/test/218.png",
             "transform_matrix": [
                 [
                     0.23175042867660522,
@@ -6354,7 +6354,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/219.png",
+            "file_path": "./dataset/test/219.png",
             "transform_matrix": [
                 [
                     0.25376051664352417,
@@ -6383,7 +6383,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/220.png",
+            "file_path": "./dataset/test/220.png",
             "transform_matrix": [
                 [
                     0.27563950419425964,
@@ -6412,7 +6412,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/221.png",
+            "file_path": "./dataset/test/221.png",
             "transform_matrix": [
                 [
                     0.2973770797252655,
@@ -6441,7 +6441,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/222.png",
+            "file_path": "./dataset/test/222.png",
             "transform_matrix": [
                 [
                     0.31896111369132996,
@@ -6470,7 +6470,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/223.png",
+            "file_path": "./dataset/test/223.png",
             "transform_matrix": [
                 [
                     0.3403809368610382,
@@ -6499,7 +6499,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/224.png",
+            "file_path": "./dataset/test/224.png",
             "transform_matrix": [
                 [
                     0.361625999212265,
@@ -6528,7 +6528,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/225.png",
+            "file_path": "./dataset/test/225.png",
             "transform_matrix": [
                 [
                     0.38268446922302246,
@@ -6557,7 +6557,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/226.png",
+            "file_path": "./dataset/test/226.png",
             "transform_matrix": [
                 [
                     0.40354639291763306,
@@ -6586,7 +6586,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/227.png",
+            "file_path": "./dataset/test/227.png",
             "transform_matrix": [
                 [
                     0.4242001175880432,
@@ -6615,7 +6615,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/228.png",
+            "file_path": "./dataset/test/228.png",
             "transform_matrix": [
                 [
                     0.4446355104446411,
@@ -6644,7 +6644,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/229.png",
+            "file_path": "./dataset/test/229.png",
             "transform_matrix": [
                 [
                     0.46484240889549255,
@@ -6673,7 +6673,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/230.png",
+            "file_path": "./dataset/test/230.png",
             "transform_matrix": [
                 [
                     0.48480963706970215,
@@ -6702,7 +6702,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/231.png",
+            "file_path": "./dataset/test/231.png",
             "transform_matrix": [
                 [
                     0.5045276880264282,
@@ -6731,7 +6731,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/232.png",
+            "file_path": "./dataset/test/232.png",
             "transform_matrix": [
                 [
                     0.5239856243133545,
@@ -6760,7 +6760,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/233.png",
+            "file_path": "./dataset/test/233.png",
             "transform_matrix": [
                 [
                     0.5431737899780273,
@@ -6789,7 +6789,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/234.png",
+            "file_path": "./dataset/test/234.png",
             "transform_matrix": [
                 [
                     0.562082827091217,
@@ -6818,7 +6818,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/235.png",
+            "file_path": "./dataset/test/235.png",
             "transform_matrix": [
                 [
                     0.5807024240493774,
@@ -6847,7 +6847,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/236.png",
+            "file_path": "./dataset/test/236.png",
             "transform_matrix": [
                 [
                     0.599022388458252,
@@ -6876,7 +6876,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/237.png",
+            "file_path": "./dataset/test/237.png",
             "transform_matrix": [
                 [
                     0.6170347332954407,
@@ -6905,7 +6905,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/238.png",
+            "file_path": "./dataset/test/238.png",
             "transform_matrix": [
                 [
                     0.6347294449806213,
@@ -6934,7 +6934,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/239.png",
+            "file_path": "./dataset/test/239.png",
             "transform_matrix": [
                 [
                     0.6520970463752747,
@@ -6963,7 +6963,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/240.png",
+            "file_path": "./dataset/test/240.png",
             "transform_matrix": [
                 [
                     0.6691293120384216,
@@ -6992,7 +6992,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/241.png",
+            "file_path": "./dataset/test/241.png",
             "transform_matrix": [
                 [
                     0.685816764831543,
@@ -7021,7 +7021,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/242.png",
+            "file_path": "./dataset/test/242.png",
             "transform_matrix": [
                 [
                     0.7021512389183044,
@@ -7050,7 +7050,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/243.png",
+            "file_path": "./dataset/test/243.png",
             "transform_matrix": [
                 [
                     0.7181245684623718,
@@ -7079,7 +7079,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/244.png",
+            "file_path": "./dataset/test/244.png",
             "transform_matrix": [
                 [
                     0.7337278723716736,
@@ -7108,7 +7108,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/245.png",
+            "file_path": "./dataset/test/245.png",
             "transform_matrix": [
                 [
                     0.7489538192749023,
@@ -7137,7 +7137,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/246.png",
+            "file_path": "./dataset/test/246.png",
             "transform_matrix": [
                 [
                     0.7637938857078552,
@@ -7166,7 +7166,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/247.png",
+            "file_path": "./dataset/test/247.png",
             "transform_matrix": [
                 [
                     0.7782407999038696,
@@ -7195,7 +7195,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/248.png",
+            "file_path": "./dataset/test/248.png",
             "transform_matrix": [
                 [
                     0.7922874093055725,
@@ -7224,7 +7224,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/249.png",
+            "file_path": "./dataset/test/249.png",
             "transform_matrix": [
                 [
                     0.8059261441230774,
@@ -7253,7 +7253,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/250.png",
+            "file_path": "./dataset/test/250.png",
             "transform_matrix": [
                 [
                     0.8191494941711426,
@@ -7282,7 +7282,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/251.png",
+            "file_path": "./dataset/test/251.png",
             "transform_matrix": [
                 [
                     0.831951916217804,
@@ -7311,7 +7311,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/252.png",
+            "file_path": "./dataset/test/252.png",
             "transform_matrix": [
                 [
                     0.844325602054596,
@@ -7340,7 +7340,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/253.png",
+            "file_path": "./dataset/test/253.png",
             "transform_matrix": [
                 [
                     0.8562643527984619,
@@ -7369,7 +7369,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/254.png",
+            "file_path": "./dataset/test/254.png",
             "transform_matrix": [
                 [
                     0.867763102054596,
@@ -7398,7 +7398,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/255.png",
+            "file_path": "./dataset/test/255.png",
             "transform_matrix": [
                 [
                     0.878814697265625,
@@ -7427,7 +7427,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/256.png",
+            "file_path": "./dataset/test/256.png",
             "transform_matrix": [
                 [
                     0.8894140720367432,
@@ -7456,7 +7456,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/257.png",
+            "file_path": "./dataset/test/257.png",
             "transform_matrix": [
                 [
                     0.8995553851127625,
@@ -7485,7 +7485,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/258.png",
+            "file_path": "./dataset/test/258.png",
             "transform_matrix": [
                 [
                     0.9092336893081665,
@@ -7514,7 +7514,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/259.png",
+            "file_path": "./dataset/test/259.png",
             "transform_matrix": [
                 [
                     0.9184440970420837,
@@ -7543,7 +7543,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/260.png",
+            "file_path": "./dataset/test/260.png",
             "transform_matrix": [
                 [
                     0.9271815419197083,
@@ -7572,7 +7572,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/261.png",
+            "file_path": "./dataset/test/261.png",
             "transform_matrix": [
                 [
                     0.9354418516159058,
@@ -7601,7 +7601,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/262.png",
+            "file_path": "./dataset/test/262.png",
             "transform_matrix": [
                 [
                     0.9432204961776733,
@@ -7630,7 +7630,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/263.png",
+            "file_path": "./dataset/test/263.png",
             "transform_matrix": [
                 [
                     0.9505135416984558,
@@ -7659,7 +7659,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/264.png",
+            "file_path": "./dataset/test/264.png",
             "transform_matrix": [
                 [
                     0.9573174715042114,
@@ -7688,7 +7688,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/265.png",
+            "file_path": "./dataset/test/265.png",
             "transform_matrix": [
                 [
                     0.9636284708976746,
@@ -7717,7 +7717,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/266.png",
+            "file_path": "./dataset/test/266.png",
             "transform_matrix": [
                 [
                     0.9694435596466064,
@@ -7746,7 +7746,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/267.png",
+            "file_path": "./dataset/test/267.png",
             "transform_matrix": [
                 [
                     0.9747594594955444,
@@ -7775,7 +7775,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/268.png",
+            "file_path": "./dataset/test/268.png",
             "transform_matrix": [
                 [
                     0.9795736074447632,
@@ -7804,7 +7804,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/269.png",
+            "file_path": "./dataset/test/269.png",
             "transform_matrix": [
                 [
                     0.9838836193084717,
@@ -7833,7 +7833,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/270.png",
+            "file_path": "./dataset/test/270.png",
             "transform_matrix": [
                 [
                     0.9876869916915894,
@@ -7862,7 +7862,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/271.png",
+            "file_path": "./dataset/test/271.png",
             "transform_matrix": [
                 [
                     0.9909819960594177,
@@ -7891,7 +7891,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/272.png",
+            "file_path": "./dataset/test/272.png",
             "transform_matrix": [
                 [
                     0.9937669634819031,
@@ -7920,7 +7920,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/273.png",
+            "file_path": "./dataset/test/273.png",
             "transform_matrix": [
                 [
                     0.9960402250289917,
@@ -7949,7 +7949,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/274.png",
+            "file_path": "./dataset/test/274.png",
             "transform_matrix": [
                 [
                     0.997800886631012,
@@ -7978,7 +7978,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/275.png",
+            "file_path": "./dataset/test/275.png",
             "transform_matrix": [
                 [
                     0.9990478157997131,
@@ -8007,7 +8007,7 @@
             ]
         },
         {
-            "file_path": "../models/Scene-05/test/276.png",
+            "file_path": "./dataset/test/276.png",
             "transform_matrix": [
                 [
                     0.9997804760932922,

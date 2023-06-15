@@ -1,7 +1,7 @@
 import torch
 
-def get_rmse_loss(rgb_map, gt_rgb_map):
-    """get root mean squared error loss between estimation and ground truth
+def get_mse_loss(rgb_map, gt_rgb_map):
+    """get mean squared error loss between estimation and ground truth
 
     Args:
         rgb_map (torch.Tensor): rgb, [batch_size, 3]
