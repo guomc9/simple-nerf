@@ -8,4 +8,4 @@ def get_psnr(mse):
     Returns:
         torch.Tensor: psnr
     """
-    return -10. * torch.log(mse) / torch.log(torch.Tensor([10.]))
+    return -10. * torch.log(mse) / torch.log(torch.Tensor([10.]).to(mse.device))

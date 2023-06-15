@@ -26,8 +26,9 @@ if __name__ == '__main__':
     Nc_samples = 64
     Nf_samples = 128
     batch_size = 1 * 1024
-    chunk = 16 * 1024
-    learning_rate = 5e-4
+    chunk = 64 * 1024
+    lr = 5e-4
+    lr_decay = 250
     train_data_loader = blenderLoader(meta_path='./dataset/transforms_train.json', batch_size=batch_size, skip=1)
 
     meta = train_data_loader.get_meta()
@@ -44,7 +45,7 @@ if __name__ == '__main__':
     
     loss_history = []
     save_step = 5000
-    optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=learning_rate, betas=(0.9, 0.999))
+    optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=lr, betas=(0.9, 0.999))
     with trange(0, N_iter) as progress_bar:
         for i in progress_bar:
             optimizer.zero_grad()
@@ -101,3 +102,10 @@ if __name__ == '__main__':
             # Save model parameters
             if (i + 1) % save_step == 0:
                 save_model_parameters(coarse_nerf, fine_nerf, i + 1)
+            
+            # Adjust learning rate
+            decay_rate = 0.1
+            decay_steps = lr_decay * 1000
+            new_lrate = lr * (decay_rate ** (i / decay_steps))
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = new_lrate
