@@ -44,7 +44,7 @@ if __name__ == '__main__':
         fine_nerf = NeRF().load_state_dict(fine_nerf_params)
     
     loss_history = []
-    save_step = 5000
+    save_step = 1000
     optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=lr, betas=(0.9, 0.999))
     with trange(0, N_iter) as progress_bar:
         for i in progress_bar:
