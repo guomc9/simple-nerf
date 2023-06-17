@@ -28,8 +28,8 @@ if __name__ == '__main__':
     batch_size = 1 * 1024
     chunk = 64 * 1024
     lr = 5e-4
-    lr_decay = 250
-    train_data_loader = blenderLoader(meta_path='./dataset/transforms_train.json', batch_size=batch_size, skip=1)
+    lr_decay = 500
+    train_data_loader = blenderLoader(meta_path='./dataset/lego/transforms_train.json', img_base_dir='./dataset/lego/', batch_size=batch_size, skip=1)
 
     meta = train_data_loader.get_meta()
     near = meta['near']
@@ -88,10 +88,10 @@ if __name__ == '__main__':
                 rgb, sigma = fine_nerf(rays_q_flat[begin:end], view_dirs_flat[begin:end])
                 all_rgb.append(rgb)
                 all_sigma.append(sigma)
-            f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                          # [batch_size, N_samples+N_imp_samples, 3]
-            f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                         # [batch_size, N_samples+N_imp_samples]
-            f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)        # [batch_size, 3], [batch_size, N_samples]
-            loss += get_mse_loss(f_rgb_map, rays_rgb)
+            f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples+N_imp_samples, 3]
+            f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples+N_imp_samples]
+            f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)          # [batch_size, 3], [batch_size, N_samples]
+            loss += get_mse_loss(f_rgb_map, rays_rgb)                                   # fine loss
             psnr = get_psnr(loss)
             loss.backward()
             optimizer.step()

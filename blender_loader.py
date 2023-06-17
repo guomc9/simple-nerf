@@ -26,7 +26,6 @@ class blenderLoader(DataLoader):
         self.H, self.W = H, W
         camera_angle_x = float(meta['camera_angle_x'])
         view_z_dir = int(meta['view_z_dir'])
-        self.batch_size = batch_size
         self.near = float(meta['near'])
         self.far = float(meta['far'])
         focal = .5 * W / np.tan(.5 * camera_angle_x)
@@ -35,6 +34,8 @@ class blenderLoader(DataLoader):
                 [0, focal, 0.5*H],
                 [0, 0, 1]
             ])
+
+        self.batch_size = batch_size
         self.N_images = imgs.shape[0]
         self.N_rays_per_image = H*W
         self.N_rays = self.N_images * self.N_rays_per_image
@@ -43,6 +44,7 @@ class blenderLoader(DataLoader):
         self.rays_o = self.rays_o.reshape(-1, 3)                                        # [N_images*H*W, 3] = [N_rays, 3]
         self.rays_d = self.rays_d.reshape(-1, 3)                                        # [N_images*H*W, 3] = [N_rays, 3]
         self.rays_rgb = imgs.reshape(-1, 3)                                             # [N_images*H*W, 3] = [N_rays, 3]
+        self.shuffle_rays()
 
     def __getitem__(self, index):
         index = index % self.N_batch
@@ -52,14 +54,24 @@ class blenderLoader(DataLoader):
         rays_o = self.rays_o[begin:end].astype(np.float32)
         rays_d = self.rays_d[begin:end].astype(np.float32)
         rays_rgb = self.rays_rgb[begin:end].astype(np.float32)
-
+        # shuffle rays
         if index == self.N_batch - 1:
-            inds = np.random.shuffle(np.arange(self.N_rays))
-            self.rays_o = self.rays_o[inds]
-            self.rays_d = self.rays_d[inds]
-            self.rays_rgb = self.rays_rgb[inds]
-
+            self.shuffle_rays()
         return rays_o, rays_d, rays_rgb         # [batch_size, 3], [batch_size, 3], [batch_size, 3]
+
+    def __len__(self):
+        return self.N_batch
+
+    def shuffle_rays(self):
+        rays = np.stack((self.rays_o, self.rays_d, self.rays_rgb), axis=1)
+        np.random.shuffle(rays)
+        print(f'rays shape:{rays.shape}')
+        rays = np.transpose(rays, (1, 0, 2))
+        self.rays_o = rays[0]
+        self.rays_d = rays[1]
+        self.rays_rgb = rays[2]
+        print(np.min(self.rays_rgb))
+        print('shuffle rays')
 
     def get_meta(self):
         return {'H':self.H, 'W':self.W, 'near':self.near, 'far':self.far}
