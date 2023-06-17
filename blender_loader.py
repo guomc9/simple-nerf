@@ -65,13 +65,12 @@ class blenderLoader(DataLoader):
     def shuffle_rays(self):
         rays = np.stack((self.rays_o, self.rays_d, self.rays_rgb), axis=1)
         np.random.shuffle(rays)
-        print(f'rays shape:{rays.shape}')
         rays = np.transpose(rays, (1, 0, 2))
         self.rays_o = rays[0]
         self.rays_d = rays[1]
         self.rays_rgb = rays[2]
         print(np.min(self.rays_rgb))
-        print('shuffle rays')
+        print('Rays shuffled')
 
     def get_meta(self):
         return {'H':self.H, 'W':self.W, 'near':self.near, 'far':self.far}

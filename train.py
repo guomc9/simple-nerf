@@ -7,46 +7,132 @@ from tqdm import trange
 from loss import get_mse_loss
 from metrics import get_psnr
 import os
+import ast
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 np.random.seed(0)
 
-def save_model_parameters(coarse_nerf, fine_nerf, iteration):
-    save_dir = f'./checkpoints/iter_{iteration}'
+def save_model_parameters(save_base_dir, coarse_nerf, fine_nerf, iteration):
+    save_dir = os.path.join(save_base_dir, f'/iter_{iteration}')
     os.makedirs(save_dir, exist_ok=True)
     torch.save(coarse_nerf.state_dict(), os.path.join(save_dir, 'coarse_nerf.pt'))
     torch.save(fine_nerf.state_dict(), os.path.join(save_dir, 'fine_nerf.pt'))
     print(f"Saved model parameters at iteration {iteration}")
 
+def config_parser():
+
+    import configargparse
+    parser = configargparse.ArgumentParser()
+
+    # configuration file
+    parser.add_argument('--config', is_config_file=True, required=True, 
+                        help='config file path')
+
+    # blender data options
+    parser.add_argument("--base_dir", type=str, required=True, 
+                        help='base directory of blender model')
+    parser.add_argument("--meta_file", type=str, required=True, 
+                        help='meta description file of blender data')
+
+    # coarse network options
+    parser.add_argument("--coarse_net_depth", type=int, default=8, 
+                        help='layers in coarse network')
+    parser.add_argument("--coarse_net_width", type=int, default=256,
+                        help='channels per layer in coarse network')
+    parser.add_argument("--coarse_net_skips", nargs='+', type=int, default=[4], 
+                        help='layers concat position encoder results in coarse network')
+    parser.add_argument("--coarse_net_use_checkpoint", type=bool, default=False, 
+                        help='coarse network checkpoint file')
+    parser.add_argument("--coarse_net_checkpoint", type=str, required=False,  
+                        help='coarse network checkpoint file')
+
+    # fine network options
+    parser.add_argument("--fine_net_depth", type=int, default=8, 
+                        help='layers in fine network')
+    parser.add_argument("--fine_net_width", type=int, default=256, 
+                        help='channels per layer in fine network')
+    parser.add_argument("--fine_net_skips", nargs='+', type=int, default=[4], 
+                        help='layers concat position encoder results in coarse network')
+    parser.add_argument("--fine_net_use_checkpoint", type=bool, default=False, 
+                        help='fine network checkpoint file')
+    parser.add_argument("--fine_net_checkpoint", type=str, required=False,  
+                        help='fine network checkpoint file')
+
+    # train options
+    parser.add_argument("--image_skip", type=int, default=1, 
+                        help='skip for image loader')
+    parser.add_argument("--N_iter", type=int, default=100000, 
+                        help='number of train iterations')
+    parser.add_argument("--batch_size", type=int, default=1*1024, 
+                        help='batch size (number of random rays per gradient step)')
+    parser.add_argument("--lr", type=float, default=5e-4, 
+                        help='learning rate')
+    parser.add_argument("--betas", type=str, default='(0.9, 0.999)', 
+                        help='betas for optimizer')
+    parser.add_argument("--lr_decay", type=int, default=250, 
+                        help='exponential learning rate decay (in 1000 steps)')
+    parser.add_argument("--chunk", type=int, default=1024*64, 
+                        help='number of pts sent through network in parallel, decrease if running out of memory')
+    parser.add_argument("--Nc_samples", type=int, default=64, 
+                        help='number of coarse samples per ray')
+    parser.add_argument("--Nf_samples", type=int, default=128,
+                        help='number of additional fine samples per ray')
+    parser.add_argument("--PE_x", type=int, default=10, 
+                        help='number of cos&sin function in position encoder for coordinate')
+    parser.add_argument("--PE_d", type=int, default=4, 
+                        help='number of cos&sin function in position encoder for directory')
+    parser.add_argument("--checkpoints_save_step", type=int, default=1000, 
+                        help='checkpoints save step')
+    parser.add_argument("--checkpoints_save_dir", type=str, default='./checkpoints', 
+                        help='checkpoints save directory')
+
+    # # logging/saving options
+    # parser.add_argument("--i_print",   type=int, default=100, 
+    #                     help='frequency of console printout and metric loggin')
+    # parser.add_argument("--i_img",     type=int, default=500, 
+    #                     help='frequency of tensorboard image logging')
+    # parser.add_argument("--i_weights", type=int, default=10000, 
+    #                     help='frequency of weight ckpt saving')
+    # parser.add_argument("--i_testset", type=int, default=50000, 
+    #                     help='frequency of testset saving')
+    # parser.add_argument("--i_video",   type=int, default=50000, 
+    #                     help='frequency of render_poses video saving')
+
+    return parser
+
 if __name__ == '__main__':
-    N_iter = 100000
-    use_checkpoints = False
-    checkpoint_dir = f'./checkpoints/iter_{N_iter}'
-    coarse_nerf_checkpoint = 'coarse_nerf.pt'
-    fine_nerf_checkpoint = 'fine_nerf.pt'
-    Nc_samples = 64
-    Nf_samples = 128
-    batch_size = 1 * 1024
-    chunk = 64 * 1024
-    lr = 5e-4
-    lr_decay = 500
-    train_data_loader = blenderLoader(meta_path='./dataset/lego/transforms_train.json', img_base_dir='./dataset/lego/', batch_size=batch_size, skip=1)
+    parser = config_parser()
+    args = parser.parse_args()
+    base_dir = args.base_dir
+    meta_file = args.meta_file
+    lr = args.lr
+    Nc_samples = args.Nc_samples
+    Nf_samples = args.Nf_samples
+    chunk = args.chunk
+    lr_decay = args.lr_decay
+    batch_size = args.batch_size
+    save_dir = args.checkpoints_save_dir
+    save_step = args.checkpoints_save_step
+    betas = ast.literal_eval(args.betas)
+
+    train_data_loader = blenderLoader(meta_path=os.path.join(base_dir, meta_file), img_base_dir=base_dir, batch_size=batch_size, skip=args.image_skip)
 
     meta = train_data_loader.get_meta()
     near = meta['near']
     far = meta['far']
-    
-    coarse_nerf = NeRF().to(device)
-    fine_nerf = NeRF().to(device)
-    if use_checkpoints:
-        coarse_nerf_params = torch.load(os.path.join(checkpoint_dir, coarse_nerf_checkpoint))
-        fine_nerf_params = torch.load(os.path.join(checkpoint_dir, fine_nerf_checkpoint))
-        coarse_nerf = NeRF().load_state_dict(coarse_nerf_params)
-        fine_nerf = NeRF().load_state_dict(fine_nerf_params)
+
+    coarse_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.coarse_net_depth, skips=args.coarse_net_skips).to(device)
+    if args.coarse_net_use_checkpoint:
+        coarse_nerf_params = torch.load(args.coarse_net_checkpoint)
+        coarse_nerf.load_state_dict(coarse_nerf_params)
+
+    fine_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.fine_net_depth, skips=args.fine_net_skips).to(device)
+    if args.fine_net_use_checkpoint:
+        fine_nerf_params = torch.load(args.fine_net_checkpoint)
+        fine_nerf.load_state_dict(fine_nerf_params)
     
     loss_history = []
-    save_step = 1000
-    optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=lr, betas=(0.9, 0.999))
-    with trange(0, N_iter) as progress_bar:
+    optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=lr, betas=betas)
+    with trange(0, args.N_iter) as progress_bar:
         for i in progress_bar:
             optimizer.zero_grad()
             rays_o, rays_d, rays_rgb = train_data_loader[i]
@@ -101,8 +187,8 @@ if __name__ == '__main__':
 
             # Save model parameters
             if (i + 1) % save_step == 0:
-                save_model_parameters(coarse_nerf, fine_nerf, i + 1)
-            
+                save_model_parameters(save_dir, coarse_nerf, fine_nerf, i + 1)
+
             # Adjust learning rate
             decay_rate = 0.1
             decay_steps = lr_decay * 1000
