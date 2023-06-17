@@ -16,6 +16,8 @@ class blenderLoader(DataLoader):
 
         for frame in meta['frames'][::skip]:
             fname = os.path.join(img_base_dir, frame['file_path'])
+            if fname[-4:] != '.png':
+                fname = fname + '.png'
             imgs.append(imageio.imread(fname))
             poses.append(np.array(frame['transform_matrix']))
 
@@ -69,7 +71,6 @@ class blenderLoader(DataLoader):
         self.rays_o = rays[0]
         self.rays_d = rays[1]
         self.rays_rgb = rays[2]
-        print(np.min(self.rays_rgb))
         print('Rays shuffled')
 
     def get_meta(self):
