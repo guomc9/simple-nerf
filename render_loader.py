@@ -22,10 +22,10 @@ class renderLoader:
         """
         task = self.tasks[0]
         self.tasks.pop(0)
-        near, far = task['near'], task['far']
-        H, W, fovY, eye_pos = task['H'], task['W'], task['fovY'], np.asarray([task['eye_pos']['x'], task['eye_pos']['y'], task['eye_pos']['z']])
-        focal = .5 * H / np.tan(fovY * np.pi / 360)
-        view_z_dir = task['view_z_dir']
+        near, far = float(task['near']), float(task['far'])
+        H, W, fovY, eye_pos = task['height'], task['width'], float(task['fovY']), np.asarray([task['eye_pos']['x'], task['eye_pos']['y'], task['eye_pos']['z']],dtype=np.float32)
+        focal = float(.5 * H / np.tan(fovY * np.pi / 360))
+        view_z_dir = float(task['view_z_dir'])
         self.H, self.W = H, W
         self.task_type = task['task_type']
         if self.task_type == 'V':
@@ -42,7 +42,7 @@ class renderLoader:
                     [focal, 0, 0.5*W],
                     [0, focal, 0.5*H],
                     [0, 0, 1]
-                ])
+                ], dtype=np.float32)
             self.N_images = 0
             forward = get_translation_matrix(-axis_coords)
             back = get_translation_matrix(axis_coords)
@@ -66,8 +66,8 @@ class renderLoader:
                     [0, 0, 1]
                 ])
             rays_o, rays_d = get_rays_np(H, W, K, view_z_dir, np.stack(c2w, axis=0)[:,:-1,:])
-        rays_o = rays_o.reshape(-1, 3)
-        rays_d = rays_d.reshape(-1, 3)
+        rays_o = rays_o.reshape(-1, 3).astype(np.float32)
+        rays_d = rays_d.reshape(-1, 3).astype(np.float32)
         return rays_o, rays_d, near, far 
         
     def empty(self):
