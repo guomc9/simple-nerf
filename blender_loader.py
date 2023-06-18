@@ -4,9 +4,10 @@ import imageio
 from torch.utils.data.dataloader import DataLoader
 import numpy as np
 from tools import get_rays_np
+import logging
 
 class blenderLoader(DataLoader):
-    def __init__(self, meta_path, img_base_dir=None, batch_size=4096, skip=1):
+    def __init__(self, meta_path, img_base_dir=None, batch_size=4096, skip=1, rand_n=None):
         with open(meta_path, 'r') as fp:
             meta = json.load(fp)
         imgs = []
@@ -71,7 +72,7 @@ class blenderLoader(DataLoader):
         self.rays_o = rays[0]
         self.rays_d = rays[1]
         self.rays_rgb = rays[2]
-        print('Rays shuffled')
+        logging.info("Rays shuffled.")
 
     def get_meta(self):
         return {'H':self.H, 'W':self.W, 'near':self.near, 'far':self.far}

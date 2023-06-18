@@ -5,3 +5,4 @@ opencv_python
 scipy
 torch
 tqdm
+tensorboard
