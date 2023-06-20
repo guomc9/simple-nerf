@@ -22,7 +22,7 @@ class blenderLoader(DataLoader):
             imgs.append(imageio.imread(fname))
             poses.append(np.array(frame['transform_matrix']))
 
-        imgs = (np.array(imgs) / 255.).astype(np.float32)[..., :3]      # [N_images, H, W, 3], RGBA -> RGB
+        imgs = (np.array(imgs)[..., :3] / 255.).astype(np.float32)      # [N_images, H, W, 3], RGB
         poses = np.array(poses).astype(np.float32)                      # [N_images, 4, 4]
 
         H, W = imgs[0].shape[:2]

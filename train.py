@@ -200,7 +200,7 @@ if __name__ == '__main__':
             all_rgb, all_sigma = [], []
             for j in range(0, n_s, chunk):
                 begin = j
-                end = j+chunk
+                end = j + chunk
                 end = end if end < n_s else n_s
                 rgb, sigma = fine_nerf(rays_q_flat[begin:end], view_dirs_flat[begin:end])
                 all_rgb.append(rgb)

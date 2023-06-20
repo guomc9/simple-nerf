@@ -90,8 +90,10 @@ class renderLoader:
             video_writer = cv2.VideoWriter(self.video_save_path, fourcc, self.fps, (self.W, self.H))
             for i in range(self.N_images):
                 frame = rgb[i]
+                frame = 255 * np.clip(frame, a_min=0., a_max=1.)
                 video_writer.write(frame)
             video_writer.release()
         elif self.task_type == 'I':
             rgb = np.reshape(rgb, newshape=[self.H, self.W, 3])
-            cv2.imwrite(self.image_save_path, rgb)
+            frame = 255 * np.clip(rgb, a_min=0., a_max=1.)
+            cv2.imwrite(self.image_save_path, frame)
