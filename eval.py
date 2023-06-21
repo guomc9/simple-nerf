@@ -116,7 +116,6 @@ if __name__ == '__main__':
             c_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples, 3]
             c_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples]
             c_rgb_map, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)              # [batch_size, 3], [batch_size, N_samples]
-            loss = get_mse_loss(c_rgb_map, rays_rgb)                                    # coarse loss
             
             # Hierarchical volume sampling
             rays_q, imp_t_vals = importance_sample_rays(rays_o=rays_o, rays_d=rays_d, t_vals=t_vals, weights=weights, N_imp_samples=Nf_samples)  # [batch_size, N_imp_samples+N_samples, 3]
@@ -136,7 +135,7 @@ if __name__ == '__main__':
             f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                          # [batch_size, N_samples+N_imp_samples, 3]
             f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                         # [batch_size, N_samples+N_imp_samples]
             f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)        # [batch_size, 3], [batch_size, N_samples]
-            loss += get_mse_loss(f_rgb_map, rays_rgb)
+            loss = get_mse_loss(f_rgb_map, rays_rgb)
             psnr = get_psnr(loss)
             loss_history.append(loss.item())
 
