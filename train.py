@@ -189,7 +189,7 @@ if __name__ == '__main__':
             c_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples, 3]
             c_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples]
             c_rgb_map, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)              # [batch_size, 3], [batch_size, N_samples]
-            loss = get_mse_loss(c_rgb_map, rays_rgb)                                    # coarse loss
+            c_loss = get_mse_loss(c_rgb_map, rays_rgb)                                    # coarse loss
             
             rays_q, imp_t_vals = importance_sample_rays(rays_o=rays_o, rays_d=rays_d, t_vals=t_vals, weights=weights, N_imp_samples=Nf_samples)  # [batch_size, N_imp_samples+N_samples, 3]
             b = rays_q.shape[0]
@@ -208,15 +208,16 @@ if __name__ == '__main__':
             f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples+N_imp_samples, 3]
             f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples+N_imp_samples]
             f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)          # [batch_size, 3], [batch_size, N_samples]
-            loss += get_mse_loss(f_rgb_map, rays_rgb)                                   # fine loss
-            psnr = get_psnr(loss)
+            f_loss = get_mse_loss(f_rgb_map, rays_rgb)                                   # fine loss
+            f_psnr = get_psnr(f_loss)
+            
+            loss = f_loss + c_loss
             loss.backward()
             optimizer.step()
-            loss_history.append(loss.item())
-            psnr_history.append(psnr.item())
+            loss_history.append(f_loss.item())
+            psnr_history.append(f_psnr.item())
             train_loss = sum(loss_history) / len(loss_history)
             train_psnr = sum(psnr_history) / len(psnr_history)
-            progress_bar.set_postfix({"Loss": f"{loss_history[-1]:.4f}", "Avg Loss": f"{train_loss:.4f}", "PSNR": f"{psnr_history[-1]:.4f}", "Avg PSNR": f"{train_psnr:.4f}"})
             
             # Test
             if (i + 1) % args.test_step == 0:
@@ -248,8 +249,7 @@ if __name__ == '__main__':
                             all_sigma.append(sigma)
                         c_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples, 3]
                         c_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples]
-                        c_rgb_map, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)              # [batch_size, 3], [batch_size, N_samples]
-                        loss = get_mse_loss(c_rgb_map, rays_rgb)                                    # coarse loss
+                        _, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)                      # [batch_size, 3], [batch_size, N_samples]
                         
                         rays_q, imp_t_vals = importance_sample_rays(rays_o=rays_o, rays_d=rays_d, t_vals=t_vals, weights=weights, N_imp_samples=Nf_samples)  # [batch_size, N_imp_samples+N_samples, 3]
                         b = rays_q.shape[0]
@@ -268,14 +268,14 @@ if __name__ == '__main__':
                         f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples+N_imp_samples, 3]
                         f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples+N_imp_samples]
                         f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)          # [batch_size, 3], [batch_size, N_samples]
-                        loss += get_mse_loss(f_rgb_map, rays_rgb)                                   # fine loss
+                        loss = get_mse_loss(f_rgb_map, rays_rgb)                                    # fine loss
                         psnr = get_psnr(loss)
                         test_loss = loss.item()
                         test_psnr = psnr.item()
                         test_losses.append(test_loss)
                         test_psnrs.append(test_psnr)
                         test_bar.set_postfix({"Loss": f"{test_loss:.4f}", "PSNR": f"{test_psnr:.4f}"})
-                writer.add_scalar("Loss/Test", sum(test_losses) / len(test_losses), i + 1)
+                writer.add_scalar("Loss/test", sum(test_losses) / len(test_losses), i + 1)
                 writer.add_scalar("PSRN/test", sum(test_psnrs) / len(test_psnrs), i + 1)
 
             # Log metrics and loss
@@ -293,5 +293,8 @@ if __name__ == '__main__':
             new_lrate = lr * (decay_rate ** (i / decay_steps))
             for param_group in optimizer.param_groups:
                 param_group['lr'] = new_lrate
-    
+
+            # Show
+            progress_bar.set_postfix({"Loss": f"{loss_history[-1]:.5f}", "Avg Loss": f"{train_loss:.5f}", "PSNR": f"{psnr_history[-1]:.4f}", "Avg PSNR": f"{train_psnr:.4f}", "lr": f"{new_lrate:.1E}"})
+
     writer.close()

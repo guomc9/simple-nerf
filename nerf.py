@@ -20,7 +20,7 @@ class PositionEncoder():
             c = torch.cos((2.**i) * input)
             output.append(s)
             output.append(c)
-        return torch.cat(output, dim=1)
+        return torch.cat(output, dim=-1)
 
 
 class NeRF(torch.nn.Module):
@@ -57,17 +57,18 @@ class NeRF(torch.nn.Module):
             torch.Tensor: sigma, [N_rays x N_samples, 1]
         """
         f_x = gamma_x = torch.cat([rays_samples ,self.pe_x(rays_samples)], dim=-1)          # [N_rays x N_samples, 63]
-        f_d = gamma_d = torch.cat([view_dirs, self.pe_d(view_dirs)], dim=-1)                # [N_rays x N_samples, 27]
+        f_v = gamma_v = torch.cat([view_dirs, self.pe_d(view_dirs)], dim=-1)                # [N_rays x N_samples, 27]
         for i in range(0, self.L):
             f_x = self.backbone[i](f_x)                                 # [N_rays x N_samples, 256/256+63] -> [N_rays x N_samples, 256]
             f_x = torch.relu(f_x) 
             if i in self.skips:
-                f_x = torch.cat([f_x, gamma_x], dim=-1)                 # [N_rays x N_samples, 256+63]
+                f_x = torch.cat([gamma_x, f_x], dim=-1)                 # [N_rays x N_samples, 256+63]
 
         sigma = self.sigma_linear(f_x)                                  # [N_rays x N_samples, 1]
         sigma = torch.relu(sigma)                                       # [N_rays x N_samples, 1]
         f = self.feature_linear(f_x)                                    # [N_rays x N_samples, 256]
-        f = self.view_linear(torch.cat([f, gamma_d], dim=-1))           # [N_rays x N_samples, 256+27] -> [N_rays x N_samples, 256]
+        f = torch.cat([f, gamma_v], dim=-1)                             # [N_rays x N_samples, 256] -> [N_rays x N_samples, 256+27]
+        f = self.view_linear(f)                                          # [N_rays x N_samples, 256+27] -> [N_rays x N_samples, 256]
         f = torch.relu(f)                                               # [N_rays x N_samples, 256]
         rgb = self.rgb_linear(f)                                        # [N_rays x N_samples, 3]
         rgb = torch.sigmoid(rgb)                                        # [N_rays x N_samples, 3]
