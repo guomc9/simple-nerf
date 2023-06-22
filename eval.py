@@ -48,7 +48,7 @@ def config_parser():
     # evaluate options
     parser.add_argument("--image_skip", type=int, default=1, 
                         help='skip for image loader')
-    parser.add_argument("--batch_size", type=int, default=1*1024, 
+    parser.add_argument("--N_rand", type=int, default=1*1024, 
                         help='batch size (number of random rays per gradient step)')
     parser.add_argument("--chunk", type=int, default=1024*64, 
                         help='number of pts sent through network in parallel, decrease if running out of memory')
@@ -70,17 +70,17 @@ if __name__ == '__main__':
     Nc_samples = args.Nc_samples
     Nf_samples = args.Nf_samples
     chunk = args.chunk
-    batch_size = args.batch_size
+    N_rand = args.N_rand
     
     # Load dataset
-    eval_data_loader = blenderLoader(os.path.join(base_dir, meta_file), img_base_dir=base_dir, batch_size=batch_size, skip=args.image_skip)
+    eval_data_loader = blenderLoader(os.path.join(base_dir, meta_file), img_base_dir=base_dir, N_rand=N_rand, skip=args.image_skip)
     
     # Load the model parameters from the checkpoint files
     coarse_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.coarse_net_depth, skips=args.coarse_net_skips).to(device)
-    coarse_nerf_params = torch.load(args.coarse_net_checkpoint)
+    coarse_nerf_params = torch.load(args.coarse_net_checkpoint, map_location=device)
     coarse_nerf.load_state_dict(coarse_nerf_params)
     fine_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.fine_net_depth, skips=args.fine_net_skips).to(device)
-    fine_nerf_params = torch.load(args.fine_net_checkpoint)
+    fine_nerf_params = torch.load(args.fine_net_checkpoint, map_location=device)
     fine_nerf.load_state_dict(fine_nerf_params)
 
     # Load meta
@@ -94,12 +94,12 @@ if __name__ == '__main__':
             # Load rays
             rays_o, rays_d, rays_rgb = eval_data_loader[i]
             rays_o = torch.from_numpy(rays_o).to(device)
-            view_dirs = rays_d = torch.from_numpy(rays_d).to(device)                # [batch_size, 3]
-            view_dirs = view_dirs / torch.norm(view_dirs, dim=-1, keepdim=True)     # [batch_size, 3]
-            rays_rgb = torch.from_numpy(rays_rgb).to(device)                        # [batch_size, 3]
+            view_dirs = rays_d = torch.from_numpy(rays_d).to(device)                # [N_rand, 3]
+            view_dirs = view_dirs / torch.norm(view_dirs, dim=-1, keepdim=True)     # [N_rand, 3]
+            rays_rgb = torch.from_numpy(rays_rgb).to(device)                        # [N_rand, 3]
             
             # Uniform sampling
-            rays_q, t_vals = uniform_sample_rays(rays_o=rays_o, rays_d=rays_d, near=near, far=far, N_samples=Nc_samples)    # [batch_size, N_samples, 3], [batch_size, N_samples]
+            rays_q, t_vals = uniform_sample_rays(rays_o=rays_o, rays_d=rays_d, near=near, far=far, N_samples=Nc_samples)    # [N_rand, N_samples, 3], [N_rand, N_samples]
             b = rays_q.shape[0]
             b_s = rays_q.shape[1]
             rays_q_flat = rays_q.reshape(-1, 3)
@@ -113,12 +113,12 @@ if __name__ == '__main__':
                 rgb, sigma = coarse_nerf(rays_q_flat[begin:end], view_dirs_flat[begin:end])
                 all_rgb.append(rgb)
                 all_sigma.append(sigma)
-            c_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples, 3]
-            c_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples]
-            c_rgb_map, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)              # [batch_size, 3], [batch_size, N_samples]
+            c_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [N_rand, N_samples, 3]
+            c_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [N_rand, N_samples]
+            c_rgb_map, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)              # [N_rand, 3], [N_rand, N_samples]
             
             # Hierarchical volume sampling
-            rays_q, imp_t_vals = importance_sample_rays(rays_o=rays_o, rays_d=rays_d, t_vals=t_vals, weights=weights, N_imp_samples=Nf_samples)  # [batch_size, N_imp_samples+N_samples, 3]
+            rays_q, imp_t_vals = importance_sample_rays(rays_o=rays_o, rays_d=rays_d, t_vals=t_vals, weights=weights, N_imp_samples=Nf_samples)  # [N_rand, N_imp_samples+N_samples, 3]
             b = rays_q.shape[0]
             b_s = rays_q.shape[1]
             rays_q_flat = rays_q.reshape(-1, 3)
@@ -132,9 +132,9 @@ if __name__ == '__main__':
                 rgb, sigma = fine_nerf(rays_q_flat[begin:end], view_dirs_flat[begin:end])
                 all_rgb.append(rgb)
                 all_sigma.append(sigma)
-            f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                          # [batch_size, N_samples+N_imp_samples, 3]
-            f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                         # [batch_size, N_samples+N_imp_samples]
-            f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)        # [batch_size, 3], [batch_size, N_samples]
+            f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                          # [N_rand, N_samples+N_imp_samples, 3]
+            f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                         # [N_rand, N_samples+N_imp_samples]
+            f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)        # [N_rand, 3], [N_rand, N_samples]
             loss = get_mse_loss(f_rgb_map, rays_rgb)
             psnr = get_psnr(loss)
             loss_history.append(loss.item())

@@ -70,10 +70,10 @@ if __name__ == '__main__':
 
     # Load the model parameters from the checkpoint files
     coarse_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.coarse_net_depth, skips=args.coarse_net_skips).to(device)
-    coarse_nerf_params = torch.load(args.coarse_net_checkpoint)
+    coarse_nerf_params = torch.load(args.coarse_net_checkpoint, map_location=device)
     coarse_nerf.load_state_dict(coarse_nerf_params)
     fine_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.fine_net_depth, skips=args.fine_net_skips).to(device)
-    fine_nerf_params = torch.load(args.fine_net_checkpoint)
+    fine_nerf_params = torch.load(args.fine_net_checkpoint, map_location=device)
     fine_nerf.load_state_dict(fine_nerf_params)
 
     # Load render tasks
