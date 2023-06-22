@@ -12,7 +12,7 @@ import logging
 import ast
 from torch.utils.tensorboard import SummaryWriter
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
 np.random.seed(0)
 
 def save_model_parameters(save_base_dir, coarse_nerf, fine_nerf, iteration):
@@ -62,12 +62,16 @@ def config_parser():
                         help='fine network checkpoint file')
 
     # train options
+    parser.add_argument("--begin_iter", type=int, default=0, 
+                        help='begin of train iterations')
     parser.add_argument("--image_skip", type=int, default=1, 
                         help='skip for image loader')
-    parser.add_argument("--N_iter", type=int, default=100000, 
+    parser.add_argument("--N_iter", type=int, default=200000, 
                         help='number of train iterations')
-    parser.add_argument("--batch_size", type=int, default=1*1024, 
-                        help='batch size (number of random rays per gradient step)')
+    parser.add_argument("--use_batch", type=bool, default=False, 
+                        help='use batchified rays for train')
+    parser.add_argument("--N_rand", type=int, default=1*1024, 
+                        help='number of random rays per gradient step')
     parser.add_argument("--lr", type=float, default=5e-4, 
                         help='learning rate')
     parser.add_argument("--betas", type=str, default='(0.9, 0.999)', 
@@ -84,7 +88,13 @@ def config_parser():
                         help='number of cos&sin function in position encoder for coordinate')
     parser.add_argument("--PE_d", type=int, default=4, 
                         help='number of cos&sin function in position encoder for directory')
-    
+    parser.add_argument("--crop_iters", type=int, default=0, 
+                        help='number of iterations to perform center cropping if no batch')
+    parser.add_argument("--crop_frac", type=float, default=0.5,
+                        help='fraction of the image to use for center cropping if no batch')
+    parser.add_argument("--res_half", type=bool, default=False, 
+                        help='half resolution of images')
+
     # saving options
     parser.add_argument("--checkpoints_save_step", type=int, default=1000, 
                         help='checkpoints save step')
@@ -106,10 +116,6 @@ def config_parser():
                         help='frequency of test')
     parser.add_argument("--test_rand_n", type=int, default=1, 
                         help='randomly choose n rays for test')
-    # parser.add_argument("--i_testset", type=int, default=50000, 
-    #                     help='frequency of testset saving')
-    # parser.add_argument("--i_video",   type=int, default=50000, 
-    #                     help='frequency of render_poses video saving')
 
     return parser
 
@@ -124,7 +130,7 @@ if __name__ == '__main__':
     Nf_samples = args.Nf_samples
     chunk = args.chunk
     lr_decay = args.lr_decay
-    batch_size = args.batch_size
+    N_rand = args.N_rand
     save_dir = args.checkpoints_save_dir
     save_step = args.checkpoints_save_step
     betas = ast.literal_eval(args.betas)
@@ -134,10 +140,10 @@ if __name__ == '__main__':
         log_step = args.log_step
         writer = SummaryWriter(log_dir=args.log_dir)
     logging.info('Init train data loader.')
-    train_data_loader = blenderLoader(meta_path=os.path.join(base_dir, train_meta_file), img_base_dir=base_dir, batch_size=batch_size, skip=args.image_skip)
+    train_data_loader = blenderLoader(meta_path=os.path.join(base_dir, train_meta_file), img_base_dir=base_dir, N_rand=N_rand, skip=args.image_skip, crop_iters=args.crop_iters, crop_frac=args.crop_frac, res_half=args.res_half)
     
     logging.info('Init test data loader.')
-    test_data_loader = blenderLoader(meta_path=os.path.join(base_dir, test_meta_file), img_base_dir=base_dir, batch_size=batch_size, skip=args.image_skip)
+    test_data_loader = blenderLoader(meta_path=os.path.join(base_dir, test_meta_file), img_base_dir=base_dir, N_rand=N_rand, skip=args.image_skip, crop_iters=args.crop_iters, crop_frac=args.crop_frac, res_half=args.res_half)
     
     train_meta = train_data_loader.get_meta()
     train_near = train_meta['near']
@@ -150,19 +156,21 @@ if __name__ == '__main__':
     logging.info('Init coarse net.')
     coarse_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.coarse_net_depth, skips=args.coarse_net_skips).to(device)
     if args.coarse_net_use_checkpoint:
+        logging.info(f'Load coarse net checkpoint ({args.coarse_net_checkpoint}).')
         coarse_nerf_params = torch.load(args.coarse_net_checkpoint)
         coarse_nerf.load_state_dict(coarse_nerf_params)
     
     logging.info('Init fine net.')
     fine_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.fine_net_depth, skips=args.fine_net_skips).to(device)
     if args.fine_net_use_checkpoint:
+        logging.info(f'Load coarse net checkpoint ({args.fine_net_checkpoint}).')
         fine_nerf_params = torch.load(args.fine_net_checkpoint)
         fine_nerf.load_state_dict(fine_nerf_params)
     
     loss_history = []
     psnr_history = []
     optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=lr, betas=betas)
-    with trange(0, args.N_iter) as progress_bar:
+    with trange(args.begin_iter, args.N_iter) as progress_bar:
         for i in progress_bar:
             optimizer.zero_grad()
             # Train

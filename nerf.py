@@ -68,7 +68,7 @@ class NeRF(torch.nn.Module):
         sigma = torch.relu(sigma)                                       # [N_rays x N_samples, 1]
         f = self.feature_linear(f_x)                                    # [N_rays x N_samples, 256]
         f = torch.cat([f, gamma_v], dim=-1)                             # [N_rays x N_samples, 256] -> [N_rays x N_samples, 256+27]
-        f = self.view_linear(f)                                          # [N_rays x N_samples, 256+27] -> [N_rays x N_samples, 256]
+        f = self.view_linear(f)                                         # [N_rays x N_samples, 256+27] -> [N_rays x N_samples, 256]
         f = torch.relu(f)                                               # [N_rays x N_samples, 256]
         rgb = self.rgb_linear(f)                                        # [N_rays x N_samples, 3]
         rgb = torch.sigmoid(rgb)                                        # [N_rays x N_samples, 3]
