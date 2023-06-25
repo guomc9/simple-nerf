@@ -55,7 +55,8 @@ def config_parser():
                         help='number of cos&sin function in position encoder for coordinate')
     parser.add_argument("--PE_d", type=int, default=4, 
                         help='number of cos&sin function in position encoder for directory')
-
+    parser.add_argument("--res_half", type=bool, default=True, 
+                        help='half resolution of images')
     return parser
 
 

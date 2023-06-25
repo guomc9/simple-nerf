@@ -123,5 +123,4 @@ class blenderLoader():
         return {'H':self.H, 'W':self.W, 'near':self.near, 'far':self.far}
     
 if __name__ == '__main__':
-    blenderLoader(meta_path='./dataset/lego/transforms_train.json', img_base_dir='./dataset/lego', use_batch=False, N_rand=1024, crop_iters=500, crop_frac=0.5, res_half=True)
-    
+    loader = blenderLoader(meta_path='./dataset/lego/transforms_train.json', img_base_dir='./dataset/lego', use_batch=False, N_rand=1024, crop_iters=500, crop_frac=0.5, res_half=True)

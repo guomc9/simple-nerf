@@ -24,7 +24,7 @@ class renderLoader:
         self.tasks.pop(0)
         near, far = float(task['near']), float(task['far'])
         H, W, fovY, eye_pos = task['height'], task['width'], float(task['fovY']), np.asarray([task['eye_pos']['x'], task['eye_pos']['y'], task['eye_pos']['z']],dtype=np.float32)
-        focal = float(.5 * H / np.tan(fovY * np.pi / 360))
+        focal = float(.5 * H / np.tan(fovY / 2))
         view_z_dir = float(task['view_z_dir'])
         self.H, self.W = H, W
         self.task_type = task['task_type']
@@ -32,12 +32,12 @@ class renderLoader:
             rot_angle, rot_speed = task['rot_angle'], task['rot_speed']
             self.fps, self.video_save_path = task['fps'], task['video_save_path']
             if task['rot_axis']['axis'] == 'y':
-                axis = np.asrray([0., 1., 0.])
-                axis_coords = np.asrray([task['rot_axis']['coord_1'], 0., task['rot_axis']['coord_2']])
+                axis = np.asarray([0., 1., 0.])
+                axis_coords = np.asarray([task['rot_axis']['coord_1'], 0., task['rot_axis']['coord_2']])
             elif task['rot_axis']['axis'] == 'x':
-                axis = np.asrray([1., 0., 0.])
-                axis_coords = np.asrray([0., task['rot_axis']['coord_1'], task['rot_axis']['coord_2']])
-            c2w = []
+                axis = np.asarray([1., 0., 0.])
+                axis_coords = np.asarray([0., task['rot_axis']['coord_1'], task['rot_axis']['coord_2']])
+            c2ws = []
             K = np.array([
                     [focal, 0, 0.5*W],
                     [0, focal, 0.5*H],
@@ -49,16 +49,18 @@ class renderLoader:
             cur_angle = 0.
             while cur_angle < rot_angle:
                 rot = get_rotation_matrix(axis, cur_angle)
-                c2w.append(back @ rot @ forward)
-                c2w[-1][:-1,-1] = eye_pos
-                
+                c2w = back @ rot @ forward
+                print(c2w)
+                c2ws.append(c2w)
+                c2ws[-1][:-1,-1] = eye_pos
                 cur_angle += rot_speed
                 self.N_images += 1
-            rays_o, rays_d = get_rays_np(H, W, K, view_z_dir, np.stack(c2w, axis=0)[:,:-1,:])
+            rays_o, rays_d = get_rays_np(H, W, K, view_z_dir, np.stack(c2ws, axis=0)[:,:-1,:])
 
         elif self.task_type == 'I':
             self.image_save_path = task["image_save_path"]
             c2w = [np.eye(N=4)]
+            c2w[-1][:-1,:-1] = np.asarray(task["pose"])
             c2w[-1][:-1,-1] = eye_pos
             K = np.array([
                     [focal, 0, 0.5*W],
@@ -86,14 +88,16 @@ class renderLoader:
         """
         if self.task_type == 'V':
             rgb = np.reshape(rgb, newshape=[self.N_images, self.H, self.W, 3])
-            fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+            fourcc = cv2.VideoWriter_fourcc(*"mp4v")
             video_writer = cv2.VideoWriter(self.video_save_path, fourcc, self.fps, (self.W, self.H))
             for i in range(self.N_images):
                 frame = rgb[i]
                 frame = 255 * np.clip(frame, a_min=0., a_max=1.)
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 video_writer.write(frame)
             video_writer.release()
         elif self.task_type == 'I':
             rgb = np.reshape(rgb, newshape=[self.H, self.W, 3])
             frame = 255 * np.clip(rgb, a_min=0., a_max=1.)
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             cv2.imwrite(self.image_save_path, frame)

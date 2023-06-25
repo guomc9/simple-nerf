@@ -44,6 +44,8 @@ def config_parser():
                         help='layers concat position encoder results in coarse network')
     parser.add_argument("--fine_net_checkpoint", type=str, required=True, 
                         help='fine network checkpoint file')
+    parser.add_argument("--res_half", type=bool, default=True, 
+                        help='half resolution of images')
 
     # evaluate options
     parser.add_argument("--image_skip", type=int, default=1, 
@@ -73,7 +75,7 @@ if __name__ == '__main__':
     N_rand = args.N_rand
     
     # Load dataset
-    eval_data_loader = blenderLoader(os.path.join(base_dir, meta_file), img_base_dir=base_dir, N_rand=N_rand, skip=args.image_skip)
+    eval_data_loader = blenderLoader(os.path.join(base_dir, meta_file), img_base_dir=base_dir, N_rand=N_rand, skip=args.image_skip, res_half=args.res_half)
     
     # Load the model parameters from the checkpoint files
     coarse_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.coarse_net_depth, skips=args.coarse_net_skips).to(device)
@@ -139,6 +141,6 @@ if __name__ == '__main__':
             psnr = get_psnr(loss)
             loss_history.append(loss.item())
 
-            progress_bar.set_postfix({"Loss": f"{loss_history[-1]:.4f}", "Avg Loss": f"{sum(loss_history) / len(loss_history):.4f}", "PSNR": f"{psnr.item():.4f}"})
+            progress_bar.set_postfix({"Loss": f"{loss_history[-1]:.5f}", "Avg Loss": f"{sum(loss_history) / len(loss_history):.5f}", "PSNR": f"{psnr.item():.4f}"})
 
     

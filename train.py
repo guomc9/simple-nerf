@@ -12,7 +12,7 @@ import logging
 import ast
 from torch.utils.tensorboard import SummaryWriter
 
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 np.random.seed(0)
 
 def save_model_parameters(save_base_dir, coarse_nerf, fine_nerf, iteration):
@@ -157,14 +157,14 @@ if __name__ == '__main__':
     coarse_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.coarse_net_depth, skips=args.coarse_net_skips).to(device)
     if args.coarse_net_use_checkpoint:
         logging.info(f'Load coarse net checkpoint ({args.coarse_net_checkpoint}).')
-        coarse_nerf_params = torch.load(args.coarse_net_checkpoint)
+        coarse_nerf_params = torch.load(args.coarse_net_checkpoint, map_location=device)
         coarse_nerf.load_state_dict(coarse_nerf_params)
     
     logging.info('Init fine net.')
     fine_nerf = NeRF(L_x=args.PE_x, L_d=args.PE_d, L=args.fine_net_depth, skips=args.fine_net_skips).to(device)
     if args.fine_net_use_checkpoint:
         logging.info(f'Load coarse net checkpoint ({args.fine_net_checkpoint}).')
-        fine_nerf_params = torch.load(args.fine_net_checkpoint)
+        fine_nerf_params = torch.load(args.fine_net_checkpoint, map_location=device)
         fine_nerf.load_state_dict(fine_nerf_params)
     
     loss_history = []
@@ -172,7 +172,6 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam(params=list(coarse_nerf.parameters()) + list(fine_nerf.parameters()), lr=lr, betas=betas)
     with trange(args.begin_iter, args.N_iter) as progress_bar:
         for i in progress_bar:
-            optimizer.zero_grad()
             # Train
             rays_o, rays_d, rays_rgb = train_data_loader[i]
             rays_o = torch.from_numpy(rays_o).to(device)
@@ -197,7 +196,7 @@ if __name__ == '__main__':
             c_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples, 3]
             c_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples]
             c_rgb_map, weights = integrate(c_rgb, c_sigma, rays_d, t_vals)              # [batch_size, 3], [batch_size, N_samples]
-            c_loss = get_mse_loss(c_rgb_map, rays_rgb)                                    # coarse loss
+            c_loss = get_mse_loss(c_rgb_map, rays_rgb)                                  # coarse loss
             
             rays_q, imp_t_vals = importance_sample_rays(rays_o=rays_o, rays_d=rays_d, t_vals=t_vals, weights=weights, N_imp_samples=Nf_samples)  # [batch_size, N_imp_samples+N_samples, 3]
             b = rays_q.shape[0]
@@ -216,16 +215,17 @@ if __name__ == '__main__':
             f_rgb = torch.cat(all_rgb, 0).reshape(b, b_s, 3)                            # [batch_size, N_samples+N_imp_samples, 3]
             f_sigma = torch.cat(all_sigma, 0).reshape(b, b_s)                           # [batch_size, N_samples+N_imp_samples]
             f_rgb_map, weights = integrate(f_rgb, f_sigma, rays_d, imp_t_vals)          # [batch_size, 3], [batch_size, N_samples]
-            f_loss = get_mse_loss(f_rgb_map, rays_rgb)                                   # fine loss
+            f_loss = get_mse_loss(f_rgb_map, rays_rgb)                                  # fine loss
             f_psnr = get_psnr(f_loss)
             
             loss = f_loss + c_loss
+            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
             loss_history.append(f_loss.item())
             psnr_history.append(f_psnr.item())
-            train_loss = sum(loss_history) / len(loss_history)
-            train_psnr = sum(psnr_history) / len(psnr_history)
+            train_loss = sum(loss_history[-1000:]) / 1000
+            train_psnr = sum(psnr_history[-1000:]) / 1000
             
             # Test
             if (i + 1) % args.test_step == 0:
@@ -303,6 +303,6 @@ if __name__ == '__main__':
                 param_group['lr'] = new_lrate
 
             # Show
-            progress_bar.set_postfix({"Loss": f"{loss_history[-1]:.5f}", "Avg Loss": f"{train_loss:.5f}", "PSNR": f"{psnr_history[-1]:.4f}", "Avg PSNR": f"{train_psnr:.4f}", "lr": f"{new_lrate:.1E}"})
+            progress_bar.set_postfix({"Loss": f"{loss_history[-1]:.5f}", "Recent 1000 Avg Loss": f"{train_loss:.5f}", "PSNR": f"{psnr_history[-1]:.4f}", "Recent 1000 Avg PSNR": f"{train_psnr:.4f}", "lr": f"{new_lrate:.2E}"})
 
     writer.close()
