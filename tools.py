@@ -2,6 +2,9 @@ import numpy as np
 import torch
 from scipy.spatial.transform import Rotation
 
+def str2bool(x):
+    return x.lower() in ('true')
+
 def get_translation_matrix(move):
     transform = np.identity(4, dtype=np.float32)
     transform[0, 3] = move[0]

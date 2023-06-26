@@ -1,6 +1,6 @@
 from blender_loader import blenderLoader
 from nerf import NeRF
-from tools import uniform_sample_rays, integrate, importance_sample_rays
+from tools import uniform_sample_rays, integrate, importance_sample_rays, str2bool
 import torch
 import numpy as np
 import random
@@ -44,7 +44,7 @@ def config_parser():
                         help='channels per layer in coarse network')
     parser.add_argument("--coarse_net_skips", nargs='+', type=int, default=[4], 
                         help='layers concat position encoder results in coarse network')
-    parser.add_argument("--coarse_net_use_checkpoint", type=bool, default=False, 
+    parser.add_argument("--coarse_net_use_checkpoint", type=str2bool, default=False, 
                         help='coarse network checkpoint file')
     parser.add_argument("--coarse_net_checkpoint", type=str, required=False,  
                         help='coarse network checkpoint file')
@@ -56,7 +56,7 @@ def config_parser():
                         help='channels per layer in fine network')
     parser.add_argument("--fine_net_skips", nargs='+', type=int, default=[4], 
                         help='layers concat position encoder results in coarse network')
-    parser.add_argument("--fine_net_use_checkpoint", type=bool, default=False, 
+    parser.add_argument("--fine_net_use_checkpoint", type=str2bool, default=False, 
                         help='fine network checkpoint file')
     parser.add_argument("--fine_net_checkpoint", type=str, required=False,  
                         help='fine network checkpoint file')
@@ -68,7 +68,7 @@ def config_parser():
                         help='skip for image loader')
     parser.add_argument("--N_iter", type=int, default=200000, 
                         help='number of train iterations')
-    parser.add_argument("--use_batch", type=bool, default=False, 
+    parser.add_argument("--use_batch", type=str2bool, default=False, 
                         help='use batchified rays for train')
     parser.add_argument("--N_rand", type=int, default=1*1024, 
                         help='number of random rays per gradient step')
@@ -92,7 +92,7 @@ def config_parser():
                         help='number of iterations to perform center cropping if no batch')
     parser.add_argument("--crop_frac", type=float, default=0.5,
                         help='fraction of the image to use for center cropping if no batch')
-    parser.add_argument("--res_half", type=bool, default=False, 
+    parser.add_argument("--res_half", type=str2bool, default=False, 
                         help='half resolution of images')
 
     # saving options
@@ -102,7 +102,7 @@ def config_parser():
                         help='checkpoints save directory')
 
     # logging options
-    parser.add_argument("--log", type=bool, default=True, 
+    parser.add_argument("--log", type=str2bool, default=True, 
                         help='log or not')
     parser.add_argument("--log_dir", type=str, default='./log', 
                         help='loss and metrics log directory')
