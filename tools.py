@@ -128,7 +128,7 @@ def importance_sample_rays(rays_o, rays_d, t_vals, weights, N_imp_samples):
     denom = torch.where(denom < 1e-5, torch.ones_like(denom), denom)                # [N_rays, N_imp_samples]
     t = (u - cdf_g[...,0]) / denom                                                  # [N_rays, N_imp_samples]
     imp_samples = bins_g[...,0] + t * (bins_g[...,1]-bins_g[...,0])                 # [N_rays, N_imp_samples]
-    imp_samples.detach()                                                            # [N_rays, N_imp_samples]
+    imp_samples.detach()_                                                            # [N_rays, N_imp_samples]
     # hierarchical sampling
     samples, _ = torch.sort(torch.cat([imp_samples, t_vals], dim=-1), dim=-1)       # [N_rays, N_imp_samples+N_samples]
     rays_q = rays_o[:,None,:] + samples[...,None] * rays_d[:,None,:]                # [N_rays, N_imp_samples+N_samples, 3] = [N_rays, 1, 3] + [N_rays, N_imp_samples+N_samples, 1] * [N_rays, 1, 3]
